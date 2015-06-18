@@ -1,4 +1,4 @@
-class CreateSalesforceOrders < ActiveRecord::Migration
+class CreateSalesforceTables < ActiveRecord::Migration
   def up
     execute "CREATE SCHEMA salesforce"
     change_schema("salesforce") do
