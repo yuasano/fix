@@ -5,6 +5,11 @@ class CreateSalesforceOrders < ActiveRecord::Migration
       create_table :orders__c do |t|
         t.text :customer_email__c
       end
+
+      create_table :products__c do |t|
+        t.integer :spree_id__c
+        t.text :name__c
+      end
     end
   end
 
