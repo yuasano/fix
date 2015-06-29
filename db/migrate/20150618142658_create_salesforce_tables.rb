@@ -10,6 +10,7 @@ class CreateSalesforceTables < ActiveRecord::Migration
         t.column :mailingpostalcode, "varchar(20)"
         t.column :firstname, "varchar(40)"
         t.column :lastname, "varchar(80)"
+        t.column :email, "varchar(80)"
         t.column :phone, "varchar(40)"
         t.column :sfid, "varchar(18)"
         t.column :spree_id__c, "varchar(14)"

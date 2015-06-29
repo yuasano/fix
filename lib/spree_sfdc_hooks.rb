@@ -20,3 +20,9 @@ Spree::Product.class_eval do
     spree_id__c: :id,
     name__c: :name)
 end
+
+Spree::User.class_eval do
+  heroku_connect("salesforce.contact",
+    spree_id__c: :id,
+    email: :email)
+end
