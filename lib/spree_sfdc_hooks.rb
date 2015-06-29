@@ -1,4 +1,6 @@
 Spree::Order.class_eval do
+  include HerokuConnect::InstanceMethods
+
   state_machine do
     after_transition to: :complete, do: :write_sfdc
   end
@@ -15,6 +17,6 @@ end
 
 Spree::Product.class_eval do
   heroku_connect("salesforce.products__c",
-    id: "spree_id__c",
-    name: "name__c")
+    spree_id__c: :id,
+    name__c: :name)
 end
