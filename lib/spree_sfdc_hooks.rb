@@ -8,6 +8,22 @@ Spree::Order.class_eval do
   def write_sfdc
     HerokuConnect.sync("salesforce.orders__c",
       customer_email__c: self.user.email)
+
+    if shipment = shipments.first
+      address = shipment.address
+      cond = { spree_id__c: self.user.id.to_s }
+      update = {
+        firstname: address.firstname,
+        lastname: address.lastname,
+        phone: address.phone,
+        mailingstreet: address.address1,
+        mailingcity: address.city,
+        mailingstate: address.state.try(:name),
+        mailingcountry: address.country.try(:iso_name),
+        mailingpostalcode: address.zipcode,
+      }
+      HerokuConnect.sync("salesforce.contact", update, cond)
+    end
   end
 end
 
