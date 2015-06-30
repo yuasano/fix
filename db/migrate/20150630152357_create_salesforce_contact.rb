@@ -1,5 +1,6 @@
 class CreateSalesforceContact < ActiveRecord::Migration
-  def change
+  def up
+    return if ENV["DEPLOYMENT"] != "development"
     HerokuConnect.change_schema("salesforce") do
       create_table :contact do |t|
         t.column :mailingstreet, "varchar(255)"
