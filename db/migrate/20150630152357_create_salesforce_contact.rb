@@ -17,4 +17,11 @@ class CreateSalesforceContact < ActiveRecord::Migration
       end
     end
   end
+
+  def down
+    return if ENV["DEPLOYMENT"] != "development"
+    HerokuConnect.change_schema("salesforce") do
+      execute "DROP TABLE contact"
+    end
+  end
 end
