@@ -38,9 +38,8 @@ attachment_config = {
 
 
 Spree.config do |config|
-  # Example:
-  # Uncomment to stop tracking inventory levels in the application
-  # config.track_inventory_levels = false
+  # See Gem spree_core-3.0.1/app/models/spree/app_configuration.rb for all predefined preferences.
+  config.logo = "logo/heroku-tree.png"
 
 
   attachment_config.each do |key, value|
