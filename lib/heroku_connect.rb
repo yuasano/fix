@@ -1,6 +1,26 @@
 module HerokuConnect
   extend ActiveSupport::Concern
 
+  def self.sync(table_name, columns, conditions=nil)
+    table = Arel::Table.new(table_name)
+    updates = columns.map do |column, value|
+      [table[column], value]
+    end
+
+    if conditions
+      formatted_conditions = conditions.map do |column, value|
+        [table[column].eq(value)]
+      end
+      manager = Arel::UpdateManager.new(ActiveRecord::Base)
+      manager.table(table).set(updates).where(formatted_conditions)
+    else
+      manager = Arel::InsertManager.new(ActiveRecord::Base)
+      manager.into(table).insert(updates)
+    end
+
+    ActiveRecord::Base.connection.execute(manager.to_sql)
+  end
+
   module ClassMethods
     def heroku_connect(table, mapping={})
       cattr_accessor :sfdc_table
@@ -15,29 +35,20 @@ module HerokuConnect
 
   module InstanceMethods
     def sync_to_sfdc
-      table = Arel::Table.new(self.class.sfdc_table)
-      sfdc_id_column = nil
+      columns = self.class.sfdc_mapping.map do |column, attr|
+        [column, self.send(attr)]
+      end.to_h
 
-      updates = self.class.sfdc_mapping.map do |column, attr|
-        if attr == :id
-          sfdc_id_column = column
-          next
-        end
-
-        [table[column], self.send(attr)]
-      end.compact
-
+      conditions = nil
       # can't use new_record?, it's always false on after_save hooks
-      if id_changed?
-        updates << [table[sfdc_id_column], self.id]
-        manager = Arel::InsertManager.new(ActiveRecord::Base)
-        manager.into(table).insert(updates)
-      else
-        manager = Arel::UpdateManager.new(ActiveRecord::Base)
-        manager.table(table).set(updates).where(table[sfdc_id_column].eq(self.id))
+      if !id_changed?
+        sfdc_id = self.class.sfdc_mapping.detect do |column, attr|
+          attr == :id
+        end.first
+        conditions = { sfdc_id => self.id }
       end
 
-      self.class.connection.execute(manager.to_sql)
+      HerokuConnect.sync(self.class.sfdc_table, columns, conditions)
     end
   end
 end

@@ -6,12 +6,8 @@ Spree::Order.class_eval do
   end
 
   def write_sfdc
-    manager = Arel::InsertManager.new(ActiveRecord::Base)
-    table = Arel::Table.new("salesforce.orders__c")
-    manager.into(table).insert([
-      [table[:customer_email__c], self.user.email]
-    ])
-    self.class.connection.execute(manager.to_sql)
+    HerokuConnect.sync("salesforce.orders__c",
+      customer_email__c: self.user.email)
   end
 end
 
