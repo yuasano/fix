@@ -21,6 +21,14 @@ module HerokuConnect
     ActiveRecord::Base.connection.execute(manager.to_sql)
   end
 
+  def self.change_schema(name)
+    conn = ActiveRecord::Base.connection
+    current_schema = conn.schema_search_path
+    conn.schema_search_path = name
+    yield
+    conn.schema_search_path = current_schema
+  end
+
   module ClassMethods
     def heroku_connect(table, mapping={})
       cattr_accessor :sfdc_table

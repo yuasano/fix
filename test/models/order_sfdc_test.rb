@@ -19,17 +19,7 @@ class OrderSfdcTest < ActiveSupport::TestCase
       line_items: [Spree::LineItem.new(quantity: 1, variant: @variant)])
   end
 
-  test "saves order on the Salesforce table" do
-    # set the order in delivery, and advance it to the final state (complete)
-    @order.update_attributes!(state: "delivery")
-    @order.next!
-
-    rows = ActiveRecord::Base.connection.select_rows("SELECT customer_email__c FROM salesforce.orders__c")
-    assert_equal 1, rows.size
-    assert_equal "john@malkovich.com", rows[0].first
-  end
-
-  test "also syncs the user address when the order has a shipment" do
+  test "syncs the user address when the order has a shipment" do
     us = Spree::Country.create!(name: 'US AND A', iso_name: 'USA')
     ca = Spree::State.create!(country: us, name: 'California')
     @address = Spree::Address.create!(
@@ -44,6 +34,7 @@ class OrderSfdcTest < ActiveSupport::TestCase
     @loc = Spree::StockLocation.create!(name: "default")
     @order.shipments.create!(address: @address, stock_location: @loc)
 
+    # set the order in delivery, and advance it to the final state (complete)
     @order.update_attributes!(state: "delivery")
     @order.next!
 
