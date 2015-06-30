@@ -16,7 +16,7 @@ Spree::Order.class_eval do
         mailingstreet: address.address1,
         mailingcity: address.city,
         mailingstate: address.state.try(:name),
-        mailingcountry: address.country.try(:iso_name),
+        mailingcountry: address.country.try(:name),
         mailingpostalcode: address.zipcode,
       }
       HerokuConnect.sync("salesforce.contact", update, cond)

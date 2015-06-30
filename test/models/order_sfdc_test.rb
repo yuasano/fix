@@ -20,7 +20,7 @@ class OrderSfdcTest < ActiveSupport::TestCase
   end
 
   test "syncs the user address when the order has a shipment" do
-    us = Spree::Country.create!(name: 'US AND A', iso_name: 'USA')
+    us = Spree::Country.create!(name: 'USA', iso_name: 'US AND A')
     ca = Spree::State.create!(country: us, name: 'California')
     @address = Spree::Address.create!(
       firstname: "John",
