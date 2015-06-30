@@ -49,3 +49,6 @@ Spree.config do |config|
 end
 
 Spree.user_class = "Spree::User"
+
+require "#{Rails.root}/lib/heroku_connect"
+require "#{Rails.root}/lib/spree_sfdc_hooks"
