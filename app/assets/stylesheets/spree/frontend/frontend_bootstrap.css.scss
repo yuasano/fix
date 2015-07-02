@@ -3,3 +3,13 @@ $brand-primary: $red-orange !default;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.hero-image {
+  width: 100%;
+  height: 240px;
+  background: no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

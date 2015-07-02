@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630152357) do
+ActiveRecord::Schema.define(version: 20150630220623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -875,6 +875,10 @@ ActiveRecord::Schema.define(version: 20150630152357) do
     t.string   "meta_description"
     t.string   "meta_keywords"
     t.integer  "depth"
+    t.string   "hero_file_name"
+    t.string   "hero_content_type"
+    t.integer  "hero_file_size"
+    t.datetime "hero_updated_at"
   end
 
   add_index "spree_taxons", ["parent_id"], name: "index_taxons_on_parent_id", using: :btree
