@@ -25,10 +25,21 @@ Spree::Order.class_eval do
 end
 
 Spree::Product.class_eval do
+  after_create :create_sfdc_pricebook_entry
+
   heroku_connect("salesforce.product2",
     spree_id__c: :id,
     productcode: :slug,
     name: :name)
+
+  def create_sfdc_pricebook_entry
+    HerokuConnect.sync("salesforce.pricebookentry", {
+      pricebook2id: ENV["PRICEBOOK_ID"],
+      name: self.name,
+      product2__spree_id__c: self.id,
+      unitprice: self.price_in(Spree::Config[:currency])
+    })
+  end
 end
 
 Spree::User.class_eval do
