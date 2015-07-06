@@ -1,3 +1,5 @@
+Spree.user_class = "Spree::User"
+
 require_dependency "#{Rails.root}/lib/heroku_connect"
 require_dependency "#{Rails.root}/lib/spree_sfdc_hooks"
 require_dependency "#{Rails.root}/lib/spree_taxon_hero_image"
@@ -19,8 +21,6 @@ Spree.config do |config|
   # See Gem spree_core-3.0.1/app/models/spree/app_configuration.rb for all predefined preferences.
   config.logo = "logo/heroku-tree.png"
 end
-
-Spree.user_class = "Spree::User"
 
 paperclip_s3_config = {
   s3_credentials: {
