@@ -24,6 +24,21 @@ Spree::Order.class_eval do
   end
 end
 
+Spree::Price.class_eval do
+  after_update :update_sfdc_product_price
+
+  def update_sfdc_product_price
+    return unless variant.is_master
+    return unless currency == Spree::Config[:currency]
+    cond = { product2__spree_id__c: self.variant.product.id.to_s }
+    update = {
+      name: self.variant.product.name,
+      unitprice: self.amount.to_s,
+    }
+    HerokuConnect.sync("salesforce.pricebookentry", update, cond)
+  end
+end
+
 Spree::Product.class_eval do
   after_create :create_sfdc_pricebook_entry
 
@@ -37,7 +52,7 @@ Spree::Product.class_eval do
       pricebook2id: ENV["PRICEBOOK_ID"],
       name: self.name,
       product2__spree_id__c: self.id,
-      unitprice: self.price_in(Spree::Config[:currency])
+      unitprice: self.price_in(Spree::Config[:currency]).amount.to_s
     })
   end
 end
