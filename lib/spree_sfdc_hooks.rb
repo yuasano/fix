@@ -31,7 +31,9 @@ end
 Spree::LineItem.class_eval do
   heroku_connect("salesforce.lineitem__c",
     spree_id__c: :id,
-    price__c: :price,
+    price_unit__c: :price,
+    price_total__c: :amount,
+    quantity__c: :quantity,
     order_id__r__spree_id__c: :order_id,
     product_id__r__spree_id__c: lambda { |li| li.variant.product_id })
 end

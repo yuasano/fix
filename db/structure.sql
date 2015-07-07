@@ -2497,12 +2497,14 @@ CREATE TABLE lineitem__c (
     id integer NOT NULL,
     sfid character varying(18),
     name character varying(80),
-    price__c double precision,
+    price_unit__c double precision,
     product_id__c character varying(18),
     product_id__r__spree_id__c character varying(14),
     order_id__c character varying(18),
     order_id__r__spree_id__c character varying(14),
-    spree_id__c character varying(14)
+    spree_id__c character varying(14),
+    price_total__c double precision,
+    quantity__c double precision
 );
 
 
@@ -2534,9 +2536,9 @@ CREATE TABLE order__c (
     sfid character varying(18),
     name character varying(80),
     total__c double precision,
-    spree_id__c character varying(14),
     contact__c character varying(18),
-    contact__r__spree_id__c character varying(14)
+    contact__r__spree_id__c character varying(14),
+    spree_id__c character varying(14)
 );
 
 
@@ -5297,9 +5299,9 @@ INSERT INTO schema_migrations (version) VALUES ('20150702002050');
 
 INSERT INTO schema_migrations (version) VALUES ('20150702002851');
 
-INSERT INTO schema_migrations (version) VALUES ('20150707020220');
-
 INSERT INTO schema_migrations (version) VALUES ('20150707020708');
 
 INSERT INTO schema_migrations (version) VALUES ('20150707021104');
+
+INSERT INTO schema_migrations (version) VALUES ('20150707225035');
 
