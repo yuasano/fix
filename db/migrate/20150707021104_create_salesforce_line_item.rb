@@ -10,6 +10,7 @@ class CreateSalesforceLineItem < ActiveRecord::Migration
         t.column :product_id__r__spree_id__c, "varchar(14)"
         t.column :order_id__c, "varchar(18)"
         t.column :order_id__r__spree_id__c, "varchar(14)"
+        t.column :spree_id__c, "varchar(14)"
       end
     end
   end
