@@ -28,6 +28,13 @@ Spree::Order.class_eval do
   end
 end
 
+Spree::LineItem.class_eval do
+  heroku_connect("salesforce.lineitem__c",
+    spree_id__c: :id,
+    price__c: :price,
+    order_id__r__spree_id__c: :order_id)
+end
+
 Spree::Price.class_eval do
   after_update :update_sfdc_product_price
 
