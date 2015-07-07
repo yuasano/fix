@@ -10,7 +10,7 @@ Spree::Order.class_eval do
   end
 
   def write_sfdc
-    if shipment = shipments.first
+    if self.user && shipment = shipments.first
       address = shipment.address
       cond = { spree_id__c: self.user.id.to_s }
       update = {
