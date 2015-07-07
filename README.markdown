@@ -18,10 +18,17 @@ Salesforce eCommerce w/ Spree
   - Lenght 14
   - Check "External ID"
   - Click Next > Next > Save
+- Create a custom object to hold orders:
+  - Go to Setup > Create > Objects > New Custom Object
+  - Call it "Order", allow Reports and Activities on it
+  - Add custom fields "total" (Currency), "spree_id" (Text, External ID), "contact" (Lookup relationship)
+- Create custom object for line items:
+  - Go to Setup > Create > Objects > New Custom Object
+  - Call it "LineItem"
+  - Add custom fields "price" (Currency), "spree_id" (Text, External ID), "order" (Lookup relationship), product (Lookup relationship)
 
 ## Heroku Connect setup:
 
 - Open the Connect dashboard, under org type check "Production"
 - Authorize with your Salesforce Org
-- Click "Create Mapping", pick the "Contact" object, pick all fields (temporary, we might want to boil this down later)
-- Create Mapping for "Product2" too
+- Create mapping for the objects "Contact", "Product2", "Pricebook2", "PricebookEntry", "Order__c" and "LineItem__c". For now just pick all fields (temporary, we might want to filter this later)
