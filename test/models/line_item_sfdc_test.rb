@@ -23,5 +23,6 @@ class LineItemSfdcTest < ActiveSupport::TestCase
     assert_equal 1, rows.size
     assert_equal "42", li["price__c"]
     assert_equal @order.id.to_s, li["order_id__r__spree_id__c"]
+    assert_equal @product.id.to_s, li["product_id__r__spree_id__c"]
   end
 end

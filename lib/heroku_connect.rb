@@ -44,7 +44,8 @@ module HerokuConnect
   module InstanceMethods
     def sync_to_sfdc
       columns = self.class.sfdc_mapping.map do |column, attr|
-        [column, self.send(attr)]
+        val = attr.is_a?(Proc) ? attr.call(self) : self.send(attr)
+        [column, val]
       end.to_h
 
       conditions = nil
