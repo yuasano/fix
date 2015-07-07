@@ -1,5 +1,9 @@
 Spree::Order.class_eval do
-  include HerokuConnect::InstanceMethods
+  heroku_connect("salesforce.order__c",
+    spree_id__c: :id,
+    name: :number,
+    total__c: :total,
+    contact__r__spree_id__c: :user_id)
 
   state_machine do
     after_transition to: :complete, do: :write_sfdc

@@ -15,8 +15,18 @@ class OrderSfdcTest < ActiveSupport::TestCase
       track_inventory: false)
     @order = Spree::Order.create!(
       user: @user,
+      number: "001",
       confirmation_delivered: true, # skip email
       line_items: [Spree::LineItem.new(quantity: 1, variant: @variant)])
+  end
+
+  test "syncs with the custom object Order" do
+    rows = ActiveRecord::Base.connection.select_all("SELECT * FROM salesforce.order__c").to_hash
+    order = rows.first
+    assert_equal 1, rows.size
+    assert_equal "001", order["name"]
+    assert_equal @user.id.to_s, order["contact__r__spree_id__c"]
+    assert_equal @order.id.to_s, order["spree_id__c"]
   end
 
   test "syncs the user address when the order has a shipment" do
