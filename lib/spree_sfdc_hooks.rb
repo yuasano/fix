@@ -3,16 +3,32 @@ Spree::Order.class_eval do
     spree_id__c: :id,
     name: :number,
     total__c: :total,
-    contact__r__spree_id__c: :user_id)
+    contact__r__spree_id__c: :sfdc_user_id)
+
+  def sfdc_user_id
+    self.user_id ||
+      Spree::User.find_by_email(self.email).try(:id) ||
+      create_sfdc_user(self.email)
+  end
+
+  def create_sfdc_user(email)
+    # sfdc org support spree ids up to 14 chars
+    SecureRandom.hex(7).tap do |id|
+      HerokuConnect.sync("salesforce.contact", {
+        spree_id__c: id,
+        email: email
+      })
+    end
+  end
 
   state_machine do
     after_transition to: :complete, do: :write_sfdc
   end
 
   def write_sfdc
-    if self.user && shipment = shipments.first
+    if shipment = shipments.first
       address = shipment.address
-      cond = { spree_id__c: self.user.id.to_s }
+      cond = { spree_id__c: self.sfdc_user_id.to_s }
       update = {
         firstname: address.firstname,
         lastname: address.lastname,
