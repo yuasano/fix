@@ -1,5 +1,5 @@
 module Spree
-  module TaxonsHelper
+  module TaxonCacheHelper
     def cache_key_for_taxon_children(parent_permalink)
       kits = Spree::Taxon
         .select(:updated_at)
