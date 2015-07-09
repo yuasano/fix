@@ -9,6 +9,7 @@ gem 'puma'
 gem 'pg'
 
 gem 'rails_12factor', group: :production
+gem 'rack-cors'
 
 gem 'aws-sdk', '~> 1.0'
 
