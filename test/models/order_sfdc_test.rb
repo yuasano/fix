@@ -20,33 +20,12 @@ class OrderSfdcTest < ActiveSupport::TestCase
       line_items: [Spree::LineItem.new(quantity: 1, variant: @variant)])
   end
 
-  test "#sfdc_user_id uses the order user when available" do
-    assert_equal @user.id, @order.sfdc_user_id
-  end
-
-  test "#sfdc_user finds an existing user by email when available" do
-    @order.user = nil
-    @order.email = "another@user.org"
-    other_user = Spree::User.create!(email: @order.email, password: "12345678")
-    assert_equal other_user.id, @order.sfdc_user_id
-  end
-
-  test "#sfdc_user creates an adhoc SFDC contact otherwise" do
-    @order.user = nil
-    @order.email = "another@user.org"
-    id = @order.sfdc_user_id
-    sfdc_user = ActiveRecord::Base.connection.select_one(
-      "SELECT * FROM salesforce.contact WHERE spree_id__c = '#{id}'"
-    )
-    assert_equal "another@user.org", sfdc_user["email"]
-  end
-
   test "syncs with the custom object Order" do
     rows = ActiveRecord::Base.connection.select_all("SELECT * FROM salesforce.order__c").to_hash
     order = rows.first
     assert_equal 1, rows.size
     assert_equal "001", order["name"]
-    assert_equal @user.id.to_s, order["contact__r__spree_id__c"]
+    assert_equal @user.email, order["contact__r__spree_email__c"]
     assert_equal @order.id.to_s, order["spree_id__c"]
   end
 

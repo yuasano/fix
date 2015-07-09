@@ -2466,7 +2466,7 @@ CREATE TABLE contact (
     email character varying(80),
     phone character varying(40),
     sfid character varying(18),
-    spree_id__c character varying(14)
+    spree_email__c character varying(80)
 );
 
 
@@ -2537,8 +2537,8 @@ CREATE TABLE order__c (
     name character varying(80),
     total__c double precision,
     contact__c character varying(18),
-    contact__r__spree_id__c character varying(14),
-    spree_id__c character varying(14)
+    spree_id__c character varying(14),
+    contact__r__spree_email__c character varying(80)
 );
 
 
@@ -4843,6 +4843,15 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 CREATE UNIQUE INDEX unique_spree_shipping_method_categories ON spree_shipping_method_categories USING btree (shipping_category_id, shipping_method_id);
 
 
+SET search_path = salesforce, pg_catalog;
+
+--
+-- Name: index_contact_on_spree_email__c; Type: INDEX; Schema: salesforce; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_contact_on_spree_email__c ON contact USING btree (spree_email__c);
+
+
 --
 -- PostgreSQL database dump complete
 --
@@ -5304,4 +5313,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150707020708');
 INSERT INTO schema_migrations (version) VALUES ('20150707021104');
 
 INSERT INTO schema_migrations (version) VALUES ('20150707225035');
+
+INSERT INTO schema_migrations (version) VALUES ('20150708214736');
+
+INSERT INTO schema_migrations (version) VALUES ('20150708224309');
 

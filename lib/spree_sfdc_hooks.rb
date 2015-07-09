@@ -1,24 +1,14 @@
 Spree::Order.class_eval do
+  before_save :ensure_sfdc_contact_exists
+
   heroku_connect("salesforce.order__c",
     spree_id__c: :id,
     name: :number,
     total__c: :total,
-    contact__r__spree_id__c: :sfdc_user_id)
+    contact__r__spree_email__c: :email)
 
-  def sfdc_user_id
-    self.user_id ||
-      Spree::User.find_by_email(self.email).try(:id) ||
-      create_sfdc_user(self.email)
-  end
-
-  def create_sfdc_user(email)
-    # sfdc org support spree ids up to 14 chars
-    SecureRandom.hex(7).tap do |id|
-      HerokuConnect.sync("salesforce.contact", {
-        spree_id__c: id,
-        email: email
-      })
-    end
+  def ensure_sfdc_contact_exists
+    Spree::User.ensure_synced(self.email)
   end
 
   state_machine do
@@ -28,7 +18,7 @@ Spree::Order.class_eval do
   def write_sfdc
     if shipment = shipments.first
       address = shipment.address
-      cond = { spree_id__c: self.sfdc_user_id.to_s }
+      cond = { spree_email__c: self.email }
       update = {
         firstname: address.firstname,
         lastname: address.lastname,
@@ -88,7 +78,21 @@ Spree::Product.class_eval do
 end
 
 Spree::User.class_eval do
-  heroku_connect("salesforce.contact",
-    spree_id__c: :id,
-    email: :email)
+  after_save :ensure_sfdc_contact_exists
+
+  def self.ensure_synced(email)
+    return unless email
+    connection.transaction(requires_new: true) do
+      begin
+        HerokuConnect.sync("salesforce.contact",
+          email: email, spree_email__c: email)
+      rescue ActiveRecord::RecordNotUnique
+        connection.exec_rollback_to_savepoint
+      end
+    end
+  end
+
+  def ensure_sfdc_contact_exists
+    self.class.ensure_synced(self.email)
+  end
 end
