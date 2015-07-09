@@ -34,6 +34,15 @@ Spree::Order.class_eval do
   end
 end
 
+Spree::OrderUpdater.class_eval do
+  alias :persist_totals_original :persist_totals
+
+  def persist_totals
+    persist_totals_original
+    order.sync_to_sfdc
+  end
+end
+
 Spree::LineItem.class_eval do
   heroku_connect("salesforce.lineitem__c",
     spree_id__c: :id,
