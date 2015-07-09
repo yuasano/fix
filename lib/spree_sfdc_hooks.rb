@@ -93,7 +93,9 @@ Spree::User.class_eval do
     connection.transaction(requires_new: true) do
       begin
         HerokuConnect.sync("salesforce.contact",
-          email: email, spree_email__c: email)
+          email: email,
+          spree_email__c: email,
+          lastname: "(unnamed Spree customer)") # required to save in salesforce
       rescue ActiveRecord::RecordNotUnique
         connection.exec_rollback_to_savepoint
       end
