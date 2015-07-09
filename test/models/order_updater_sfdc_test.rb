@@ -22,6 +22,7 @@ class OrderUpdaterSfdcTest < ActiveSupport::TestCase
 
   test "also writes the total to salesforce" do
     @order.total = 150.99
+    @order.write_sfdc # make sure order exists in salesforce.order__c
     @order.persist_totals
     rows = ActiveRecord::Base.connection.select_all("SELECT * FROM salesforce.order__c").to_hash
     sfdc_order = rows.first

@@ -1,21 +1,18 @@
 Spree::Order.class_eval do
-  before_save :ensure_sfdc_contact_exists
-
-  heroku_connect("salesforce.order__c",
-    spree_id__c: :id,
-    name: :number,
-    total__c: :total,
-    contact__r__spree_email__c: :email)
-
-  def ensure_sfdc_contact_exists
-    Spree::User.ensure_synced(self.email)
-  end
-
   state_machine do
     after_transition to: :complete, do: :write_sfdc
   end
 
   def write_sfdc
+    Spree::User.ensure_synced(self.email)
+
+    HerokuConnect.sync("salesforce.order__c", {
+      spree_id__c: self.id,
+      name: self.number,
+      total__c: self.total,
+      contact__r__spree_email__c: self.email
+    })
+
     if shipment = shipments.first
       address = shipment.address
       cond = { spree_email__c: self.email }
@@ -39,7 +36,9 @@ Spree::OrderUpdater.class_eval do
 
   def persist_totals
     persist_totals_original
-    order.sync_to_sfdc
+    update = { total__c: order.total }
+    conds = { spree_id__c: order.id }
+    HerokuConnect.sync("salesforce.order__c", update, conds)
   end
 end
 
