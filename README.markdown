@@ -25,7 +25,7 @@ Salesforce eCommerce w/ Spree
 - Create custom object for line items:
   - Go to Setup > Create > Objects > New Custom Object
   - Call it "LineItem"
-  - Add custom fields "price" (Currency), "spree_id" (Text, External ID), "order" (Lookup relationship), product (Lookup relationship)
+  - Add custom fields "quantity" (Number), price_unit" (Currency), "price_total" (Currency), "spree_id" (Text, External ID), "order" (Lookup relationship), product (Lookup relationship)
 
 ## Heroku Connect setup:
 

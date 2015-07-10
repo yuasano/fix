@@ -21,11 +21,15 @@ class OrderSfdcTest < ActiveSupport::TestCase
   end
 
   test "syncs with the custom object Order" do
+    # set the order in delivery, and advance it to the final state (complete)
+    @order.update_attributes!(state: "delivery")
+    @order.next!
+
     rows = ActiveRecord::Base.connection.select_all("SELECT * FROM salesforce.order__c").to_hash
     order = rows.first
     assert_equal 1, rows.size
     assert_equal "001", order["name"]
-    assert_equal @user.id.to_s, order["contact__r__spree_id__c"]
+    assert_equal @user.email, order["contact__r__spree_email__c"]
     assert_equal @order.id.to_s, order["spree_id__c"]
   end
 
