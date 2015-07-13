@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   #
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
   mount Spree::Core::Engine, :at => '/'
-          # The priority is based upon order of creation: first created -> highest priority.
+
+  # Add custom routes to the Spree engine so that our modification coexists with the engine's definitions.
+  Spree::Core::Engine.add_routes do
+    post '/orders/multi_populate', :to => 'taxon_orders#populate', :as => :multi_populate_orders
+  end
+  
+  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"

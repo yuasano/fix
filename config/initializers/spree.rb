@@ -3,7 +3,6 @@ Spree.user_class = "Spree::User"
 require_dependency "#{Rails.root}/lib/heroku_connect"
 require_dependency "#{Rails.root}/lib/spree_sfdc_hooks"
 require_dependency "#{Rails.root}/lib/spree_taxon_hero_image"
-require_dependency "#{Rails.root}/lib/spree_multi_populate_orders"
 
 # Configure Spree Preferences
 #
