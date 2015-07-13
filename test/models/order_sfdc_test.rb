@@ -8,7 +8,7 @@ class OrderSfdcTest < ActiveSupport::TestCase
     @shipping_cat = Spree::ShippingCategory.create!(name: "Pick-up")
     @product = Spree::Product.create!(
       name: "Ritual Coffee",
-      price: 28,
+      price: 5.50,
       shipping_category: @shipping_cat)
     @variant = Spree::Variant.create!(
       product: @product,
@@ -17,20 +17,33 @@ class OrderSfdcTest < ActiveSupport::TestCase
       user: @user,
       number: "001",
       confirmation_delivered: true, # skip email
-      line_items: [Spree::LineItem.new(quantity: 1, variant: @variant)])
+      line_items: [Spree::LineItem.new(quantity: 2, variant: @variant)])
   end
 
-  test "syncs with the custom object Order" do
+  def move_order_to_complete
     # set the order in delivery, and advance it to the final state (complete)
     @order.update_attributes!(state: "delivery")
     @order.next!
+  end
 
+  test "syncs with the custom object Order" do
+    move_order_to_complete
     rows = ActiveRecord::Base.connection.select_all("SELECT * FROM salesforce.order__c").to_hash
     order = rows.first
     assert_equal 1, rows.size
     assert_equal "001", order["name"]
     assert_equal @user.email, order["contact__r__spree_email__c"]
     assert_equal @order.id.to_s, order["spree_id__c"]
+  end
+
+  test "syncs line items" do
+    move_order_to_complete
+    rows = ActiveRecord::Base.connection.select_all("SELECT * FROM salesforce.lineitem__c").to_hash
+    li = rows.first
+    assert_equal 1, rows.size
+    assert_equal "2", li["quantity__c"]
+    assert_equal "5.5", li["price_unit__c"]
+    assert_equal "11", li["price_total__c"]
   end
 
   test "syncs the user address when the order has a shipment" do
@@ -48,9 +61,7 @@ class OrderSfdcTest < ActiveSupport::TestCase
     @loc = Spree::StockLocation.create!(name: "default")
     @order.shipments.create!(address: @address, stock_location: @loc)
 
-    # set the order in delivery, and advance it to the final state (complete)
-    @order.update_attributes!(state: "delivery")
-    @order.next!
+    move_order_to_complete
 
     rows = ActiveRecord::Base.connection.select_all("SELECT * FROM salesforce.contact").to_hash
     sf_address = rows.first
