@@ -1,5 +1,6 @@
-<div class='taxon-add-to-cart'>
-<%= form_for :order, :url => multi_populate_orders_path do |f| %>
+<%= form_for :order,
+  :url => multi_populate_orders_path,
+  :html => { :class => 'taxon-add-to-cart' } do |f| %>
 
   <%- @products.each_with_index do |product, i| -%>
     <%= hidden_field_tag "line_items[#{i}][variant_id]", product.master.id %>
@@ -7,10 +8,9 @@
   <%- end -%>
 
   <div class="add-to-cart">
-    <%= button_tag :class => 'btn btn-success', :id => 'add-to-cart-button', :type => :submit do %>
+    <%= button_tag :class => 'btn btn-default', :id => 'add-to-cart-button', :type => :submit do %>
       <%= Spree.t(:add_to_cart) %>
     <% end %>
   </div>
 
 <% end %>
-</div>

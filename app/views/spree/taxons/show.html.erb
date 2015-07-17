@@ -1,0 +1,29 @@
+<% if @taxon.hero_file_name %>
+  <div class='hero-image stacked-block' style="background-image: url(<%= @taxon.hero.url %>)">
+    <div class='row'>
+      <div class='col-xs-6'>
+        <h1 class="taxon-title"><%= @taxon.name %></h1>
+      </div>
+      <div class='col-xs-6'>
+        <%= render partial: 'white_label/taxons/add_to_cart' %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="taxon-header stacked-block">
+    <h1 class="taxon-title"><%= @taxon.name %></h1>
+    <%= render partial: 'white_label/taxons/add_to_cart' %>
+  </div>
+<% end %>
+
+<div class="stacked-block" data-hook="taxon_products">
+  <%= render partial: 'spree/shared/products', locals: { products: @products, taxon: @taxon } %>
+</div>
+
+<% unless params[:keywords].present? %>
+  <div class="stacked-block" data-hook="taxon_children">
+    <% cache [I18n.locale, @taxon] do %>
+      <%= render partial: 'taxon', collection: @taxon.children %>
+    <% end %>
+  </div>
+<% end %>

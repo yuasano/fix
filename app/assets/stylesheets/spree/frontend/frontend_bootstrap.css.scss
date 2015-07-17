@@ -37,14 +37,31 @@ h1, h2, h3 {
   background-size: cover;
 }
 
+.hero-image .add-to-cart {
+  text-align: right;
+  margin: 8px 8px 0 0;
+}
+
+.hero-image h1 {
+  padding: 15px;
+  color: black;
+}
+
+.hero-image-link:hover {
+  text-decoration: none;
+  color: $red-orange;
+}
+
 .stacked-block + .stacked-block {
   margin-top: 30px;
 }
 
-.taxon-add-to-cart {
-  margin-top: -45px;
-  margin-right: 15px;
-  float: right;
+.taxon-listing .hero-image {
+  margin-top: 15px;
+}
+
+.product-list-item {
+  text-align: center;
 }
 
 #product-images #main-image img {
