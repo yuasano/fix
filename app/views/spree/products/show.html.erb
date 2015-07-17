@@ -1,0 +1,82 @@
+<div data-hook="product_show" itemscope itemtype="https://schema.org/Product">
+  <div class="col-md-6" data-hook="product_left_part">
+    <div data-hook="product_left_part_wrap">
+      <div id="product-images" data-hook="product_images">
+        <div id="main-image" data-hook>
+
+          <% if defined?(image) && image %>
+            <%= image_tag image.attachment.url(:large), :itemprop => "image" %>
+          <% else %>
+            <%= large_image(@product, :itemprop => "image") %>
+          <% end %>
+
+        </div>
+        <div id="thumbnails" data-hook>
+
+          <%# no need for thumbnails unless there is more than one image %>
+          <% if (@product.images + @product.variant_images).uniq.size > 1 %>
+            <ul id="product-thumbnails" class="thumbnails list-inline" data-hook>
+              <% @product.images.each do |i| %>
+                <li class='tmb-all tmb-<%= i.viewable.id %>'>
+                  <%= link_to(image_tag(i.attachment.url(:mini), class: "thumbnail"), i.attachment.url(:large)) %>
+                </li>
+              <% end %>
+
+              <% if @product.has_variants? %>
+                <% @product.variant_images.each do |i| %>
+                  <% next if @product.images.include?(i) %>
+                  <li class='vtmb tmb-<%= i.viewable.id %>'>
+                    <%= link_to(image_tag(i.attachment.url(:mini), class: "thumbnail"), i.attachment.url(:large)) %>
+                  </li>
+                <% end %>
+              <% end %>
+            </ul>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6" data-hook="product_right_part">
+    <div data-hook="product_right_part_wrap">
+      <div id="product-description" data-hook="product_description">
+        <h1 class="product-title stacked-block" itemprop="name">
+        <%- if @taxon -%>
+          <%= link_to @taxon.name, seo_url(@taxon), :class => 'hero-image-link' %> &rarr;
+        <%- end -%>
+        <%= @product.name %>
+        </h1>
+
+        <div itemprop="description" class="stacked-block" data-hook="description">
+          <%= product_description(@product) rescue Spree.t(:product_has_no_description) %>
+        </div>
+
+        <div id="cart-form" class="stacked-block" data-hook="cart_form">
+          <%= render :partial => 'cart_form' %>
+        </div>
+
+        <div class="stacked-block" data-hook="product_properties">
+          <% unless @product_properties.empty? %>  
+            <table id="product-properties" class="table" data-hook>
+              <tbody>
+                <% @product_properties.each do |product_property| %>
+                  <% css_class = cycle('even', 'odd', :name => "properties") %>
+                  <tr>
+                    <th><%= product_property.property.presentation %></th>
+                    <td><%= product_property.value %></td>
+                  </tr>
+                <% end %>
+                <% reset_cycle('properties') %>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
+
+        <div class="stacked-block" data-hook="promotions">
+          <%= render :partial => 'promotions' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
