@@ -4,6 +4,20 @@ $brand-primary: $red-orange !default;
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  font-size: 100%;
+}
+
+p, li, div {
+  font-size: 14px;
+}
+
+h1, h2, h3 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+
 #breadcrumbs {
   display: none;
 }
@@ -18,8 +32,45 @@ $brand-primary: $red-orange !default;
   background-size: cover;
 }
 
+.stacked-block + .stacked-block {
+  margin-top: 20px;
+}
+
 .taxon-add-to-cart {
   margin-top: -50px;
   margin-right: 20px;
   float: right;
+}
+
+#product-images #main-image img {
+  width: 100%;
+}
+
+#product-images #product-thumbnails {
+  margin: 20px 0 0 0;
+  text-align: center;
+}
+
+#product-images #product-thumbnails > li {
+  padding: 0;
+}
+
+#product-images #product-thumbnails li + li {
+  margin-left: 20px;
+}
+
+#product-images .thumbnail {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+
+#product-price {
+  text-align: right;
+  padding-top: 6px;
+}
+
+#product-properties th {
+  font-weight: normal;
+  text-align: right;
 }
