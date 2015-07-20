@@ -82,4 +82,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Deface now supports precompiling where all overrides are loaded and
+  # applied to the original views and the resulting templates are then
+  # saved to your application's app/compiled_views directory.
+  # https://github.com/spree/deface#production--precompiling
+  config.deface.enabled = false
 end

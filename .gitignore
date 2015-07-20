@@ -17,3 +17,7 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore build artifacts.
+/app/compiled_views
+/public/assets
