@@ -27,14 +27,8 @@ h1, h2, h3 {
   display: none;
 }
 
-.hero-image {
+.hero-image img {
   width: 100%;
-  height: 240px;
-  background: no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
 }
 
 .hero-image .add-to-cart {

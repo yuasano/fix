@@ -1,7 +1,8 @@
 <div class="taxon taxon-listing stacked-block" data-hook="taxon">
   <% if taxon.hero_file_name %>
     <%= link_to seo_url(taxon), :class => 'hero-image-link' do %>
-      <div class='hero-image' style="background-image: url(<%= taxon.hero.url %>)">
+      <div class='hero-image'>
+        <%= image_tag taxon.hero.url %>
         <h1><%= taxon.name %></h1>
       </div>
     <% end %>

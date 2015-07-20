@@ -1,5 +1,6 @@
 <% if @taxon.hero_file_name %>
-  <div class='hero-image stacked-block' style="background-image: url(<%= @taxon.hero.url %>)">
+  <div class='hero-image stacked-block'>
+    <%= image_tag @taxon.hero.url %>
     <div class='row'>
       <div class='col-xs-6'>
         <h1 class="taxon-title"><%= @taxon.name %></h1>
