@@ -1,10 +1,12 @@
-<div data-hook="homepage_products">
+<div class="kit-listing row" data-hook="homepage_products">
   <% cache(cache_key_for_taxon_children('kit')) do %>
     <%- Spree::Taxon
         .where(:permalink => 'kit')
         .first
         .children.each do |kit| -%>
-      <%= render partial: 'spree/taxons/taxon', locals: { taxon: kit } %>
+      <div class="col-sm-6 col-md-4">
+        <%= render partial: 'spree/taxons/taxon', locals: { taxon: kit } %>
+      </div>
     <%- end -%>
   <% end %>
 </div>
