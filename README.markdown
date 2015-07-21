@@ -22,6 +22,7 @@ Salesforce eCommerce w/ Spree
   - Click Next > Next > Save
 - Create a similar custom field to tie products too:
   - Go to Setup > Customize > Products > Fields
+  - Under "Custom Fields & Relationships", click "New"
   - Set Data type to "Text"
   - Call it "spree_id"
   - Check "External ID"
