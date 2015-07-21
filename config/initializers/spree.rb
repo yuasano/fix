@@ -21,19 +21,21 @@ Spree.config do |config|
   config.logo = "logo/fix-logotype.png"
 end
 
+aws_s3_path = ENV['AWS_S3_PATH'] ? "/#{ENV['AWS_S3_PATH']}" : ''
+
 paperclip_s3_config = {
   s3_credentials: {
     access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
     secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-    bucket:            ENV['S3_BUCKET_NAME']
+    bucket:            ENV['AWS_S3_BUCKET']
   },
   storage:        :s3,
   s3_headers:     { "Cache-Control" => "max-age=31557600" },
   s3_protocol:    "https",
-  bucket:         ENV['S3_BUCKET_NAME'],
+  bucket:         ENV['AWS_S3_BUCKET'],
   url:            ":s3_domain_url",
-  path:           "/:class/:id/:style/:basename.:extension",
-  default_url:    "/:class/:id/:style/:basename.:extension"
+  path:           "#{aws_s3_path}/:class/:id/:style/:basename.:extension",
+  default_url:    "#{aws_s3_path}/:class/:id/:style/:basename.:extension"
 }
 
 paperclip_s3_config.each do |key, value|
