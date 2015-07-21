@@ -18,7 +18,7 @@ require_dependency "#{Rails.root}/lib/spree_taxon_hero_image"
 
 Spree.config do |config|
   # See Gem spree_core-3.0.1/app/models/spree/app_configuration.rb for all predefined preferences.
-  config.logo = "logo/heroku-tree.png"
+  config.logo = "logo/fix-logotype.png"
 end
 
 paperclip_s3_config = {
