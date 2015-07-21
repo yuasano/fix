@@ -37,7 +37,7 @@ Salesforce eCommerce w/ Spree
   - Call it "LineItem"
   - Add custom fields "quantity" (Number), price_unit" (Currency 10,2), "price_total" (Currency 10,2), "spree_id" (Text, External ID), "order" (Lookup relationship), product (Lookup relationship)
 - And finally, Spree needs to know what Price Book you want to use for this integration in SFDC:
-  - In the tabs at the top, click the + sign
+  - In the tabs at the top, click the `+` sign
   - Pick "Price Books"
   - Click the "Standard Price Book"
   - Note the ID in the URL (eg: na41.salesforce.com/`01sABCD`). Set that as the `PRICEBOOK_ID` in the environment
