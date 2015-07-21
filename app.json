@@ -29,6 +29,7 @@
     "heroku-postgresql",
     "herokuconnect",
     "heroku-s3",
-    "mailgun"
+    "mailgun",
+    "memcachier"
   ]
 }
