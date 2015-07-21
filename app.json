@@ -17,12 +17,20 @@
       "description": "Indicates the runtime location of the app; used to regulate behaviors which are different when running at Heroku",
       "value": "production"
     },
+    "LANG": {
+      "description": "Default locale & character encoding to use in app runtime",
+      "value": "en_US.UTF-8"
+    },
     "PRICEBOOK_ID": {
       "description": "The Salesforce org's Pricebook used for synchronization of Products"
     },
     "RAILS_SERVE_STATIC_FILES": {
       "description": "Rails on Heroku should server its own static content; unset this var if a web server is in front of Spree",
       "value": "enabled"
+    },
+    "SECRET_KEY_BASE": {
+      "description": "A unique secret used by Rails to generate and verify signed cookies (among other things)",
+      "generator": "secret"
     }
   },
   "addons": [
