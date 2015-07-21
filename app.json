@@ -1,0 +1,34 @@
+{
+  "name": "Heroku Spree Commerce",
+  "description": "Image-focused, white-label Spree Commerce site integrated with Salesforce",
+  "keywords": [
+    "ecommerce",
+    "ruby",
+    "salesforce"
+  ],
+  "website": "https://github.com/heroku/spree-sfdc",
+  "repository": "https://github.com/heroku/spree-sfdc.git",
+  "success_url": "/admin",
+  "scripts": {
+    "postdeploy": "bin/setup"
+  },
+  "env": {
+    "DEPLOYMENT": {
+      "description": "Indicates the runtime location of the app; used to regulate behaviors which are different when running at Heroku",
+      "value": "production"
+    },
+    "PRICEBOOK_ID": {
+      "description": "The Salesforce org's Pricebook used for synchronization of Products"
+    },
+    "RAILS_SERVE_STATIC_FILES": {
+      "description": "Rails on Heroku should server its own static content; unset this var if a web server is in front of Spree",
+      "value": "enabled"
+    }
+  },
+  "addons": [
+    "heroku-postgresql",
+    "herokuconnect",
+    "heroku-s3",
+    "mailgun"
+  ]
+}
