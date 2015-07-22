@@ -1,11 +1,11 @@
 <% if @taxon.hero_file_name %>
-  <div class='hero-image stacked-block'>
-    <%= image_tag @taxon.hero.url %>
+  <div class='stacked-block'>
     <div class='row'>
-      <div class='col-xs-6'>
-        <h1 class="taxon-title"><%= @taxon.name %></h1>
+      <div class='hero-image col-sm-8'>
+        <%= image_tag @taxon.hero.url %>
       </div>
-      <div class='col-xs-6'>
+      <div class='col-sm-4'>
+        <h1 class="taxon-title"><%= @taxon.name %></h1>
         <%= render partial: 'white_label/taxons/add_to_cart' %>
       </div>
     </div>
