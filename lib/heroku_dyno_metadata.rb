@@ -4,14 +4,14 @@ module HerokuDynoMetadata
 
   FILE_PATH = '/etc/heroku/dyno'.freeze
 
-  def self.read(file_path=FILE_PATH)
+  def self.load(file_path=FILE_PATH)
     @data = File.open(file_path) do |f|
       JSON.parse(f.read)
     end
   end
 
   def self.cache(*args)
-    @data || (@data = read(*args))
+    @data || load(*args)
   end
 
   # Main API to fetch Dyno Metadata

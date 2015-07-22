@@ -9,13 +9,13 @@ class HerokuDynoMetadataTest < ActiveSupport::TestCase
     HerokuDynoMetadata.instance_variable_set(:@data, nil)
   end
 
-  test "read raises for a non-existent file" do
+  test "load raises for a non-existent file" do
     assert_raises(Errno::ENOENT) do
-      HerokuDynoMetadata.read('non-existent-file')
+      HerokuDynoMetadata.load('non-existent-file')
     end
   end
-  test "reads sample file" do
-    value = HerokuDynoMetadata.read(SAMPLE_FILE)
+  test "loads sample file" do
+    value = HerokuDynoMetadata.load(SAMPLE_FILE)
     assert_kind_of(Hash, value)
   end
   test "caches sample file" do
@@ -23,12 +23,12 @@ class HerokuDynoMetadataTest < ActiveSupport::TestCase
     assert_kind_of(Hash, value)
   end
   test "gets a deep key from the sample" do
-    HerokuDynoMetadata.read(SAMPLE_FILE)
+    HerokuDynoMetadata.load(SAMPLE_FILE)
     value = HerokuDynoMetadata.get('release.commit')
     assert_equal("e831f344ca1fee91cb427fad34c630311b136f2d", value)
   end
   test "gets nil from the sample for a non-existent key" do
-    HerokuDynoMetadata.read(SAMPLE_FILE)
+    HerokuDynoMetadata.load(SAMPLE_FILE)
     value = HerokuDynoMetadata.get('not.a.real.key')
     assert_nil(value)
   end
