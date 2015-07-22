@@ -4,7 +4,12 @@ require 'heroku_dyno_metadata'
 class HerokuDynoMetadataTest < ActiveSupport::TestCase
   SAMPLE_FILE = 'sample-etc-heroku-dyno.json'
 
-  test "raises file not found" do
+  setup do
+    # clear the cached JSON @data
+    HerokuDynoMetadata.instance_variable_set(:@data, nil)
+  end
+
+  test "read raises for a non-existent file" do
     assert_raises(Errno::ENOENT) do
       HerokuDynoMetadata.read('non-existent-file')
     end
@@ -27,9 +32,14 @@ class HerokuDynoMetadataTest < ActiveSupport::TestCase
     value = HerokuDynoMetadata.get('not.a.real.key')
     assert_nil(value)
   end
-  test "raises without a valid key path" do
+  test "get raises without a valid key path" do
     assert_raises(StandardError) do
       HerokuDynoMetadata.get(nil)
     end
+  end
+  test "gets nil for a non-existent file" do
+    # HerokuDynoMetadata.FILE_PATH only exists in deployment, in a dyno
+    value = HerokuDynoMetadata.get('release.commit')
+    assert_nil(value)
   end
 end

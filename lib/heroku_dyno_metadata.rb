@@ -14,6 +14,10 @@ module HerokuDynoMetadata
     @data || (@data = read(*args))
   end
 
+  # Main API to fetch Dyno Metadata
+  #
+  # Returns `nil` if the metadata file or key doesn't exist.
+  #
   def self.get(key_path)
     unless key_path.respond_to? :split
       raise ArgumentError, "Requires a dot-delimited key path; for example 'release.commit'"
@@ -25,6 +29,8 @@ module HerokuDynoMetadata
         hash[key]
       end
     end
+
+  rescue Errno::ENOENT
   end
 
 end
