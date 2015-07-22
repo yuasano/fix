@@ -54,14 +54,19 @@ Rails.application.configure do
   # Use a different logger for distributed setups.
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
-  # Use a different cache store in production.
+  # Namespace the cache by git commit hash of the release.
+  if release_commit = HerokuDynoMetadata.get('release.commit')
+    release_commit = release_commit[0..5]
+  end
+  # Use Memcache via Dalli gem
   config.cache_store = :dalli_store,
     (ENV["MEMCACHIER_SERVERS"] || "").split(","),
     { :username => ENV["MEMCACHIER_USERNAME"],
       :password => ENV["MEMCACHIER_PASSWORD"],
       :failover => true,
       :socket_timeout => 1.5,
-      :socket_failure_delay => 0.2 }
+      :socket_failure_delay => 0.2,
+      :namespace => release_commit }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
