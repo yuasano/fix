@@ -1,5 +1,9 @@
 require 'json'
 
+# Requires (currently) alpha platform feature
+# `heroku labs:enable runtime-dyno-metadata`
+# which writes a JSON data file to "/etc/heroku/dyno".
+#
 module HerokuDynoMetadata
 
   FILE_PATH = '/etc/heroku/dyno'.freeze
