@@ -56,6 +56,7 @@ Rails.application.configure do
 
   # Namespace the cache by git commit hash of the release.
   if release_commit = HerokuDynoMetadata.get('release.commit')
+    # truncate the hash since Memcache limits keys to 250-chars
     release_commit = release_commit[0..5]
   end
   # Use Memcache via Dalli gem
