@@ -18,11 +18,18 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 22px;
   font-weight: 200;
   margin: 0;
+  line-height: 0.9em;
 }
 
 #header #logo {
   text-align: center;
-  margin: 15px 0 15px 0;
+  margin: 15px 0;
+
+  @media (min-width: $screen-xs-min) {
+    & {
+      margin: 30px 0;
+    }
+  }
 }
 
 #header #logo img {
@@ -51,11 +58,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-.hero-image .add-to-cart {
-  text-align: right;
-  margin: 8px 8px 0 0;
-}
-
 .hero-image h1 {
   padding: 15px 0;
   color: black;
@@ -70,13 +72,36 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 30px;
 }
 
+.taxon-title {
+  padding-top: 0;
+  float: left;
+
+  @media (min-width: $screen-sm-min) {
+    & {
+      padding-top: 45%;
+      float: none;
+    }
+  }
+}
+
+.taxon-add-to-cart button {
+  float: right;
+
+  @media (min-width: $screen-sm-min) {
+    & {
+      margin-top: 15px;
+      float: none;
+    }
+  }
+}
 
 .taxon-listing .hero-image-link {
   display: block;
 }
 
-.product-list-item {
-  text-align: center;
+.product-list-item-image {
+  width: 100%;
+  margin-bottom: 15px;
 }
 
 #product-images #main-image img {
