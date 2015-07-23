@@ -1,0 +1,14 @@
+<%= f.field_container :hero, class: ['form-group'] do %>
+  <%= f.label :hero, Spree.t(:hero_image) %>
+  <%= f.file_field :hero %>
+<% end %>
+
+<%= f.field_container :group, class: ['form-group'] do %>
+  <%= f.label :group, Spree.t(:group_image) %>
+  <%= f.file_field :group %>
+<% end %>
+
+<%= f.field_container :style, class: ['form-group'] do %>
+  <%= f.label :style, Spree.t(:style_image) %>
+  <%= f.file_field :style %>
+<% end %>

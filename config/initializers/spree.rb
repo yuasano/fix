@@ -2,7 +2,7 @@ Spree.user_class = "Spree::User"
 
 require_dependency "#{Rails.root}/lib/heroku_connect"
 require_dependency "#{Rails.root}/lib/spree_sfdc_hooks"
-require_dependency "#{Rails.root}/lib/spree_taxon_hero_image"
+require_dependency "#{Rails.root}/lib/spree_taxon_images"
 
 # Configure Spree Preferences
 #
@@ -42,4 +42,6 @@ paperclip_s3_config.each do |key, value|
   Spree::Image.attachment_definitions[:attachment][key.to_sym] = value
   Spree::Taxon.attachment_definitions[:icon][key.to_sym] = value
   Spree::Taxon.attachment_definitions[:hero][key.to_sym] = value
+  Spree::Taxon.attachment_definitions[:group][key.to_sym] = value
+  Spree::Taxon.attachment_definitions[:style][key.to_sym] = value
 end
