@@ -95,6 +95,42 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.taxon-listing .hero-image {
+  height: 420px;
+  background: no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+
+  @media (min-width: $screen-sm-min) {
+    & {
+      height: 600px;
+    }
+  }
+}
+
+.taxon-listing .hero-image h1 {
+  padding: 15px 0;
+  color: black;
+  text-align: center;
+}
+
+.taxon-listing .group-link {
+  padding: 0 15px;
+  background-color: white;
+
+  @media (max-width: $screen-xs-min) {
+    & {
+      padding: 0 5px;
+    }
+    h1 {
+      font-size: 16px;
+    }
+  }
+}
+
 .taxon-listing .hero-image-link {
   display: block;
 }
