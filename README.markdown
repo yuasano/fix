@@ -9,6 +9,8 @@ Salesforce eCommerce w/ Spree
   * [Rails Engine view overrides](app/views/spree)
   * [Deface view overrides](app/overrides/white_label) (see [Deface](https://github.com/spree/deface/blob/master/README.markdown))
   * various [partials](app/views/white_label) called from overrides
+* Platform features:
+  * `heroku labs:enable runtime-dyno-metadata`
 
 ## Salesforce Setup
 
