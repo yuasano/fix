@@ -2,13 +2,15 @@
   <nav class="col-md-12">
     <div id="main-nav-bar" class="navbar">
       <ul class="nav navbar-nav navbar-right" data-hook>
+        <%- unless current_page?(cart_path) -%>
         <li id="link-to-cart" data-hook>
           <noscript>
-            <%= link_to Spree.t(:cart), '/cart' %>
+            <%= link_to Spree.t(:cart), cart_path %>
           </noscript>
           &nbsp;
         </li>
         <script>Spree.fetch_cart()</script>
+        <%- end -%>
       </ul>
     </div>
   </nav>

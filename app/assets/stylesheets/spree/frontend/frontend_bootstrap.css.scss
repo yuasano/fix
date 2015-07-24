@@ -9,7 +9,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-p, li, div {
+p, li, div, th, td {
   font-size: 16px;
   font-weight: 300;
 }
@@ -17,7 +17,6 @@ p, li, div {
 h1, h2, h3, h4, h5, h6 {
   font-size: 22px;
   font-weight: 200;
-  margin: 0;
   line-height: 0.9em;
 }
 
@@ -103,7 +102,6 @@ h1, h2, h3, h4, h5, h6 {
   -o-background-size: cover;
   background-size: cover;
 
-
   @media (min-width: $screen-sm-min) {
     & {
       height: 600px;
@@ -113,6 +111,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .taxon-listing .hero-image h1 {
   padding: 15px 0;
+  margin: 0;
   color: black;
   text-align: center;
 }
@@ -133,6 +132,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .taxon-listing .hero-image-link {
   display: block;
+}
+
+h1.taxon-title,
+h1.product-title {
+  margin: 0;
 }
 
 .product-list-item-image {
@@ -171,4 +175,33 @@ h1, h2, h3, h4, h5, h6 {
 #product-properties th {
   font-weight: normal;
   text-align: right;
+}
+
+.iconic-cart-title {
+  font-size: 22px;
+  margin: 0 0 15px 0;
+  text-align: center;
+  color: #ddd;
+
+  @media (min-width: $screen-xs-min) {
+    & {
+      font-size: 36px;
+    }
+  }
+}
+
+.cart-total-label {
+  text-align: right;
+}
+
+.table-responsive {
+  border: none;
+}
+
+.table > thead > tr > th {
+  border-bottom: none;
+}
+
+.table > thead > tr.active > th {
+  background-color: transparent;
 }

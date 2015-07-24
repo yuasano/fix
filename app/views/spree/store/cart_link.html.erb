@@ -1,6 +1,6 @@
 <%- if simple_current_order && !simple_current_order.item_count.zero? -%>
   <%= link_to spree.cart_path do -%>
-    <span class='glyphicon glyphicon-shopping-cart' title='<%= Spree.t('cart') %>'></span>
+    <span class='glyphicon glyphicon-shopping-cart' title='<%= Spree.t(:shopping_cart) %>'></span>
     (<%= simple_current_order.item_count %>)
   <%- end -%>
 <%- end -%>
