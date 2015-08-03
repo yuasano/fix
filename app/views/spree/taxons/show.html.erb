@@ -10,6 +10,9 @@
             <h1 class="taxon-title"><%= @taxon.name %></h1>
           </div>
         </div>
+        <div itemprop="description" class="stacked-block" data-hook="description">
+          <%= product_description(@taxon) rescue Spree.t(:product_has_no_description) %>
+        </div>
         <%= render partial: 'white_label/taxons/add_to_cart' %>
       </div>
     </div>
