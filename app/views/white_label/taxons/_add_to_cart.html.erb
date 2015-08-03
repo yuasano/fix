@@ -2,15 +2,33 @@
   :url => multi_populate_orders_path,
   :html => { :class => 'taxon-add-to-cart' } do |f| %>
 
-  <%- @products.each_with_index do |product, i| -%>
-    <%= hidden_field_tag "line_items[#{i}][variant_id]", product.master.id %>
-    <%= hidden_field_tag "line_items[#{i}][quantity]", 1 %>
-  <%- end -%>
+  <div class="row">
 
-  <div class="add-to-cart">
-    <%= button_tag :class => 'btn btn-default', :id => 'add-to-cart-button', :type => :submit do %>
-      <%= Spree.t(:add_kit_to_cart) %>
-    <% end %>
+    <div id="product-price" class="col-xs-6">
+      <div>
+        <span class="price selling" itemprop="price">
+          <%- taxon_total = @products.inject(0.0) do |sum, product| 
+            product.price_in(current_currency).price + sum
+          end
+          taxon_price = Spree::Price.new(currency: current_currency)
+          taxon_price.price = taxon_total
+          -%>
+          <%= taxon_price.display_price.to_html %>
+        </span>
+        <span itemprop="priceCurrency" content="<%= current_currency %>"></span>
+      </div>
+    </div>
+
+    <div class="add-to-cart col-xs-6">
+      <%- @products.each_with_index do |product, i| -%>
+        <%= hidden_field_tag "line_items[#{i}][variant_id]", product.master.id %>
+        <%= hidden_field_tag "line_items[#{i}][quantity]", 1 %>
+      <%- end -%>
+      <%= button_tag :class => 'btn btn-default', :id => 'add-to-cart-button', :type => :submit do %>
+        <%= Spree.t(:add_kit_to_cart) %>
+      <% end %>
+    </div>
+
   </div>
 
 <% end %>

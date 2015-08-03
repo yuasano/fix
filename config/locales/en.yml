@@ -24,4 +24,5 @@ en:
   hero_image: "Hero Image"
   group_image: "Group Image"
   style_image: "Style Image"
-  add_kit_to_cart: "Add Kit to Cart"
+  spree:
+    add_kit_to_cart: "Add Kit to Cart"
