@@ -42,10 +42,12 @@
     <div data-hook="product_right_part_wrap">
       <div id="product-description" data-hook="product_description">
         <h1 class="product-title stacked-block" itemprop="name">
-        <%- if @taxon -%>
-          <%= link_to @taxon.name, seo_url(@taxon), :class => 'hero-image-link' %> &rarr;
-        <%- end -%>
         <%= @product.name %>
+        <%- if @taxon -%>
+          <div class="taxon-scope">
+            &rarr; <%= link_to @taxon.name, seo_url(@taxon), :class => 'hero-image-link' %>
+          </div>
+        <%- end -%>
         </h1>
 
         <div itemprop="description" class="stacked-block" data-hook="description">
