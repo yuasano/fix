@@ -206,6 +206,10 @@ h1.product-title {
   }
 }
 
+.cart-item-quantity input {
+  width: 50%;
+}
+
 .cart-total-label {
   text-align: right;
 }
@@ -277,6 +281,10 @@ h1.product-title {
       padding-right: 10px;
       white-space: nowrap;
       text-align: right;
+    }
+
+    .cart-item-quantity input {
+      width: 75%;
     }
 
     tr.cart-total > th,
