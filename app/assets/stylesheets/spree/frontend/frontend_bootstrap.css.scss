@@ -221,3 +221,83 @@ h1.product-title {
 .table > thead > tr.active > th {
   background-color: transparent;
 }
+
+@media (max-width: $screen-sm-min) {  
+  table#cart-detail {
+      /* Force table to not be like tables anymore */
+    &, thead, tbody, th, td, tr { 
+      display: block; 
+    }
+    
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr { 
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    p {
+      margin: 0;
+    }
+    
+    #line_items > tr {
+      border: 1px solid #ccc;
+    }
+    
+    #line_items > tr > th,
+    #line_items > tr > td {
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+    #line_items > tr > td { 
+      /* Behave  like a "row" */
+      border: none;
+      position: relative;
+      padding-left: 25%; 
+      white-space: normal;
+    }
+    #line_items > tr > td:nth-of-type(1) { 
+      padding-left: 10px;
+      text-align: center;
+    }
+
+    #line_items > tr > td:nth-of-type(5) {
+      display: none;
+    }
+    
+    #line_items > tr > td:before { 
+      /* Now like a table header */
+      position: absolute;
+      /* Top/left values mimic padding */
+      top: 4px;
+      left: 0;
+      width: 25%;
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: right;
+    }
+
+    tr.cart-total > th,
+    tr.cart-total > td {
+      border: none;
+      display: table-cell;
+    }
+    tr.cart-total > th {
+      width: 100%; 
+      text-align: right;
+    }
+    tr.cart-total > td:nth-of-type(2) {
+      display: none;
+    }
+
+    /*
+    Label the data
+    */
+    #line_items > tr > td:nth-of-type(1):before { content: " "; }
+    #line_items > tr > td:nth-of-type(2):before { content: "Item"; }
+    #line_items > tr > td:nth-of-type(3):before { content: "Price"; }
+    #line_items > tr > td:nth-of-type(4):before { content: "Qty"; }
+  }
+}

@@ -1,5 +1,5 @@
 Deface::Override.new(:virtual_path => "spree/orders/edit",
-                     :replace      => "#clear_cart_link",
+                     :replace      => "#empty-cart",
                      :name         => "cart_secondary_buttons",
                      :partial      => "white_label/orders/cart_secondary_buttons",
-                     :original     => '61f113a03f1af1f3faa5550010a5748d67560d86')
+                     :original     => 'f7e860b9b01fa7b0e29cbdf4be182bbdfd561de0')
