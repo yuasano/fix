@@ -1,8 +1,8 @@
 /*
 Define project-specific variables & bootstrap overrides.
-$font-size-base: 17px;
-$headings-font-weight: 600;
-$blockquote-font-size: $font-size-base;
 */
+
+$font-family-sans-serif: 'Source Sans Pro', sans-serif !default;
+$headings-font-weight:    200 !default;
 
 @import "bootstrap/variables";

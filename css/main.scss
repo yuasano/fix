@@ -10,8 +10,57 @@
         "syntax-highlighting"
 ;
 
+// Bootstrap tweaks
+
 .header h3 {
   margin-top: 0;
   margin-bottom: 0;
   line-height: 40px;
+}
+
+// Custom styles
+
+.cover-image {
+  background: no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.fit-image {
+  background: no-repeat center bottom;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+}
+
+.jumbotron {
+  background-color: #fff;
+  
+  .fit-image {
+    padding-bottom: 80px;
+
+    @media (min-width: 481px) {
+      padding-bottom: 120px;
+    }
+
+    @media (min-width: 768px) {
+      padding-bottom: 160px;
+    }
+
+    @media (min-width: 980px) {
+      padding-bottom: 190px;
+    }
+
+    @media (min-width: 1200px) {
+      padding-bottom: 220px;
+    }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 300;
+    }
+  }
 }
