@@ -36,31 +36,43 @@
   background-size: contain;
 }
 
+.stacked-block {
+  margin-bottom: 30px;
+}
+
 .jumbotron {
   background-color: #fff;
   
   .fit-image {
-    padding-bottom: 80px;
-
-    @media (min-width: 481px) {
-      padding-bottom: 120px;
-    }
-
-    @media (min-width: 768px) {
-      padding-bottom: 160px;
-    }
-
-    @media (min-width: 980px) {
-      padding-bottom: 190px;
-    }
-
-    @media (min-width: 1200px) {
-      padding-bottom: 220px;
-    }
+    padding-bottom: 60px;
 
     h1 {
       font-size: 18px;
       font-weight: 300;
+    }
+  }  
+
+  @media (min-width: $screen-xs-min) {
+    .fit-image {
+      padding-bottom: 100px;
+    }
+  }
+
+  @media (min-width: $screen-sm-min) {
+    .fit-image {
+      padding-bottom: 110px;
+    }
+  }
+
+  @media (min-width: $screen-md-min) {
+    .fit-image {
+      padding-bottom: 140px;
+    }
+  }
+
+  @media (min-width: $screen-lg-min) {
+    .fit-image {
+      padding-bottom: 160px;
     }
   }
 }

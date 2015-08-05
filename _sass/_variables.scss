@@ -5,4 +5,7 @@ Define project-specific variables & bootstrap overrides.
 $font-family-sans-serif: 'Source Sans Pro', sans-serif !default;
 $headings-font-weight:    200 !default;
 
+$red-orange: #ff3300;
+$brand-primary: $red-orange !default;
+
 @import "bootstrap/variables";
