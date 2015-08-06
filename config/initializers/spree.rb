@@ -19,6 +19,11 @@ require_dependency "#{Rails.root}/lib/spree_taxon_images"
 Spree.config do |config|
   # See Gem spree_core-3.0.1/app/models/spree/app_configuration.rb for all predefined preferences.
   config.logo = "logo/fix-logotype.png"
+
+  # defaults for US-based store
+  config.currency = 'USD'
+  country = Spree::Country.find_by_iso('US')
+  config.default_country_id = country.id if country.present?
 end
 
 aws_s3_path = ENV['AWS_S3_PATH'] ? "/#{ENV['AWS_S3_PATH']}" : ''
