@@ -24,6 +24,14 @@ strong, .lead {
   font-weight: 400;
 }
 
+// Fix so Spree flashes map to Bootstrap components.
+.alert-notice {
+  @extend .alert-warning;
+}
+.alert-alert {
+  @extend .alert-danger;
+}
+
 #header #logo {
   text-align: center;
   margin: 15px 0;
