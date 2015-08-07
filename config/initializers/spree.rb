@@ -22,8 +22,10 @@ Spree.config do |config|
 
   # defaults for US-based store
   config.currency = 'USD'
-  country = Spree::Country.find_by_iso('US')
-  config.default_country_id = country.id if country.present?
+  if Spree::Country.table_exists?
+    country = Spree::Country.find_by_iso('US')
+    config.default_country_id = country.id if country.present?
+  end
 end
 
 aws_s3_path = ENV['AWS_S3_PATH'] ? "/#{ENV['AWS_S3_PATH']}" : ''
