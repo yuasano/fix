@@ -14,7 +14,42 @@ permalink: /architecture/
   <div class="row">
     <div class="col-md-4 stacked-block">
       <h2>Mobile or Desktop web UI</h2>
-      <p>Customers get a sleek, refined experience regardless of how they access the storefront. The user interface is implemented with the <a href="http://getbootstrap.com">Bootstrap</a> HTML/CSS responsive design framework.</p>
+      <p>Customers get a device-optimized experience regardless of how they access the storefront. The user interface is implemented with the <a href="http://getbootstrap.com">Bootstrap</a> HTML/CSS responsive design framework.</p>
+    </div>
+    <div class="col-md-4 stacked-block">
+      <h2>Spree storefront server</h2>
+      <p>The storefront server runs on Heroku exposing both a web-based interface for customers as well as a REST/HTTP API for integration with other systems.</p>
+      <p><a href="https://spreecommerce.com">Spree Commerce</a> provides everything needed to launch an eCommerce site, from payment gateway integrations to multi-location inventory control. Its built on <a href="http://rubyonrails.org">Ruby on Rails</a>, allowing complete customization by developers.</p>
+    </div>
+    <div class="col-md-4 stacked-block">
+      <h2>Salesforce synchronization</h2>
+      <p><a href="https://www.heroku.com/connect">Heroku Connect</a> synchronizes storefront data from Heroku Postgres to Salesforce:</p>
+      <ul>
+        <li>As Spree Products are updated
+          <ul>
+            <li><code>Product2</code></li>
+            <li><code>Pricebook2</code></li>
+            <li><code>PricebookEntry</code></li>
+          </ul>
+        </li>
+        <li>As Spree Users are updated
+          <ul>
+            <li><code>Contact</code></li>
+          </ul>
+        </li>
+        <li>As Spree Orders are completed
+          <ul>
+            <li><code>Order__c</code></li>
+            <li><code>LineItem__c</code></li>
+          </ul>
+        </li>
+      </ul>
+      <p>Easily configured with a point and click UI, developers can further extend the integration with Salesforce using rate-limit free, bi-directional synchronization.</p>
+    </div>
+    <div class="col-md-4 stacked-block">
+      <h2>Salesforce-centric workflow</h2>
+      <p>Records in Salesforce may be supplemented with buttons that invoke API calls to the storefront with the "Custom Button" feature.</p>
+      <p>For example, the Cancel Order button triggers a REST/HTTP API call to Spree immediately cancelling the order.</p>
     </div>
   </div>
 </div>
