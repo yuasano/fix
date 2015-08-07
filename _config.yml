@@ -3,12 +3,12 @@ title: "FIX, eCommerce on Heroku"
 email: mars@heroku.com
 description: > # this means to ignore newlines until "baseurl:"
   Example Salesforce-backed eCommerce system running on Heroku.
-baseurl: "/spree-sfdc" # the subpath of your site, e.g. /blog/
+baseurl: "/fix" # the subpath of your site, e.g. /blog/
 url: "https://heroku.github.io" # the base hostname & protocol for your site
 twitter_username: heroku
 github_username:  heroku
 demo_url: https://sample-spree.herokuapp.com
-github_url: https://github.com/heroku/spree-sfdc
+github_url: https://github.com/heroku/fix
 
 # Build settings
 markdown: kramdown
