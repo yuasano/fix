@@ -6,7 +6,7 @@ layout: default
   <div class="container fit-image"
     style="background-image: url({{ '/images/fix-product-comp.jpg' | prepend: site.baseurl }})">
     <img src="{{ '/images/fix-logotype.png' | prepend: site.baseurl }}" width="99" height="56" alt="Fix">
-    <h1>Reference Architecture for eCommerce Applications</h1>
+    <h1>Reference Architecture</h1>
   </div>
 </div>
 
@@ -17,31 +17,40 @@ layout: default
     </div>
   </div>
   <div class="row">
-    <div class="col-md-4 stacked-block">
+    <div class="col-sm-6 col-md-4 stacked-block">
+      <img src="{{ '/images/salesforce.png' | prepend: site.baseurl }}" width="133" height="133" alt="Salesforce" class="stacked-block">
+      <p>Track all your customer information and interactions in one place. The #1 CRM solution takes sales and support automation to new heights, with the power to grow with your business.</p>
+      <p>FIX uses Salesforce as the system of record for customer support agents.</p>
+      <p><a class="btn btn-default" href="http://www.salesforce.com" target="_blank">Salesforce website &raquo;</a></p>
+    </div>
+    <div class="col-sm-6 col-md-4 stacked-block">
+      <img src="{{ '/images/heroku-logo.png' | prepend: site.baseurl }}" width="90" height="133" alt="Heroku" class="stacked-block">
+      <p>Heroku makes the processes of deploying, configuring, scaling, tuning, and managing apps as simple and straightforward as possible, so developers can focus on what’s most important: building great apps.</p>
+      <p>FIX uses Heroku's cloud platform to run the Ruby on Rails app and all of its supporting services.</p>
+      <p><a class="btn btn-default" href="https://www.heroku.com/home" target="_blank">Heroku website &raquo;</a></p>
+    </div>
+    <div class="col-sm-6 col-md-4 stacked-block">
       <img src="{{ '/images/spree-logo.png' | prepend: site.baseurl }}" width="133" height="133" alt="Spree Commerce" class="stacked-block">
-      <p>The Spree storefront offers a full feature set and is built on common standards, so you don't have to compromise speed to market, efficiency or innovation. The modular platform allows you to easily configure, supplement or replace any functionality you need, so that you can build the exact storefront that you want.</p>
+      <p>The Spree storefront offers a full feature set and is built on common standards. The modular platform allows you to easily configure, supplement or replace any functionality you need, so that you can build the exact storefront that you want.</p>
+      <p>FIX uses a customized version of Spree to produce the eCommerce experience and processes.</p>
       <p><a class="btn btn-default" href="https://spreecommerce.com" target="_blank">Spree website &raquo;</a></p>
     </div>
-    <div class="col-md-4 stacked-block">
-      <img src="{{ '/images/heroku-logo.png' | prepend: site.baseurl }}" width="115" height="133" alt="Heroku" class="stacked-block">
-      <p>Heroku makes the processes of deploying, configuring, scaling, tuning, and managing apps as simple and straightforward as possible, so developers can focus on what’s most important: building great apps that delight and engage customers.</p>
-      <p><a class="btn btn-default" href="https://www.heroku.com/home" target="_blank">Heroku website &raquo;</a></p>
-   </div>
-    <div class="col-md-4 stacked-block">
+    <div class="col-sm-6 col-md-4 stacked-block">
       <img src="{{ '/images/connect-logo.png' | prepend: site.baseurl }}" width="115" height="133" alt="Heroku Connect" class="stacked-block">
-      <p>Using bi-directional synchronization between Salesforce and Heroku Postgres, Heroku Connect unifies the data in your Postgres database with the contacts, accounts and other custom objects in the Salesforce database.</p>
+      <p>Using bi-directional synchronization between Salesforce and Heroku Postgres, Heroku Connect unifies the data in your Postgres database with the contacts, accounts, or any type of object in the Salesforce database.</p>
+      <p>FIX uses Connect to instantly reflect customers and their orders as Salesforce records.</p>
       <p><a class="btn btn-default" href="https://www.heroku.com/connect" target="_blank">Connect website &raquo;</a></p>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-4 stacked-block">
+    <div class="col-sm-6 col-md-4 stacked-block">
       <img src="{{ '/images/rails.png' | prepend: site.baseurl }}" width="87" height="133" alt="Ruby on Rails" class="stacked-block">
       <p>Ruby on Rails is an open-source web framework that’s optimized for programmer happiness and sustainable productivity. It lets you write beautiful code by favoring convention over configuration.</p>
+      <p>FIX uses Rails' modularity to enable extensive customization of the Spree storefront.</p>
       <p><a class="btn btn-default" href="http://rubyonrails.org" target="_blank">Rails website &raquo;</a></p>
    </div>
-    <div class="col-md-4 stacked-block">
+    <div class="col-sm-6 col-md-4 stacked-block">
       <img src="{{ '/images/bootstrap.jpg' | prepend: site.baseurl }}" width="145" height="133" alt="Bootstrap" class="stacked-block">
       <p>HTML, CSS, and JS framework for developing responsive, mobile first projects on the web. Bootstrap makes front-end web development faster and easier. It's made for folks of all skill levels, devices of all shapes, and projects of all sizes.</p>
+      <p>FIX uses Bootstrap to create a beautiful interface for any modern device, from phones to tablets to desktop PCs.</p>
       <p><a class="btn btn-default" href="http://getbootstrap.com" target="_blank">Bootstrap website &raquo;</a></p>
     </div>
   </div>
