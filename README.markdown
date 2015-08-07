@@ -44,6 +44,44 @@ Salesforce eCommerce w/ Spree
   - Click the "Standard Price Book"
   - Note the ID in the URL (eg: na41.salesforce.com/`01sABCD`). Set that as the `PRICEBOOK_ID` in the environment
 
+And finally, to create the "Cancel Order" button in Salesforce:
+
+- Lets start by getting an API token to your Spree store:
+  - Open `/admin`, login
+  - Click Users, then pick your email
+  - Copy the key under "API Access"
+- Now lets create the button in Salesforce:
+  - Under Setup, go to Build > Create > Objects and click on the "Order" custom object
+  - Scroll down and click "New Button or Link"
+  - Set the label to "Cancel Order", name it "Cancel"
+  - Under "Behavior", select "Execute JavaScript"
+  - Under "Content Source", select "OnClick JavaScript"
+  - Fill in the actual javascript source replacing `$SPREE_ACCESS_TOKEN` for the actual token noted previously, and `$APP_NAME` for your Heroku app name:
+    
+    ```js
+    {!REQUIRESCRIPT('//code.jquery.com/jquery-2.0.3.min.js')}
+
+    var spreeUrl = 'https://$APP_NAME.herokuapp.com/api/orders/{!Order__c.spree_id__c}/empty';
+
+    jQuery.ajax({
+      url:spreeUrl,
+      type: 'PUT',
+      headers: {
+        'X-Spree-Token':'$SPREE_ACCESS_TOKEN'
+      },
+      success: function(res) {
+        console.log(res);
+        $('#00N37000001WbNH_ileinner').html('$0.00');
+        alert('Order canceled!');
+      },
+      error: function(res) {
+        console.error(res);
+        alert('Could not cancel order');
+      }
+    });
+    ```
+
+
 ## Heroku Connect setup:
 
 - Open the Connect dashboard, under org type check "Production"
