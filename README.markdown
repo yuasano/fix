@@ -1,7 +1,13 @@
 Salesforce eCommerce w/ Spree
 =============================
 
+
+
 ## Customizations
+
+Spree is built on Ruby on Rails, so customizing it is an exercise in altering and extending a large Rails app.
+
+These are the hot-zones of customization used to create FIX:
 
 * [Spree app config set in an initializer](config/initializers/spree.rb) (see [Configuration Options](https://guides.spreecommerce.com/developer/preferences.html#spree-configuration-options))
 * [SCSS/Bootstrap style overrides](app/assets/stylesheets/spree/frontend/frontend_bootstrap.css.scss)
@@ -9,10 +15,57 @@ Salesforce eCommerce w/ Spree
   * [Rails Engine view overrides](app/views/spree)
   * [Deface view overrides](app/overrides/white_label) (see [Deface](https://github.com/spree/deface/blob/master/README.markdown))
   * various [partials](app/views/white_label) called from overrides
-* Platform features:
-  * `heroku labs:enable runtime-dyno-metadata`
 
-## Salesforce Setup
+
+## Development
+
+### Requires
+
+* [Ruby 2.2](https://www.ruby-lang.org/en/documentation/installation/)
+* [PostgreSQL](https://wiki.postgresql.org/wiki/Detailed_installation_guides)
+
+### Local setup
+
+1. Clone the git repo
+
+  ```
+  git clone https://github.com/heroku/fix.git
+  ```
+1. Change into the directory
+
+  ```
+  cd fix
+  ```
+1. Install the Ruby bundle
+
+  ```
+  bundle install --path vendor/bundle
+  ```
+1. Initialize the database
+
+  ```
+  bundle exec rake db:create railties:install:migrations db:migrate db:seed
+  ```
+1. Set environment variables
+
+  ```
+  cp .env.sample .env
+  ```
+
+  Then modify contents of `.env`
+    * `AWS_*` values should map to write access on an S3 bucket that allows public/anonymous read
+    * `DEPLOYMENT` should not equal `production` except when running on Heroku
+    * `PRICEBOOK_ID` is the Salesforce ID of the Price Book created in the Salesforce setup (below)
+    * `RAILS_SERVE_STATIC_FILES` should be `enabled` for local dev & Heroku, unless you configured a web server to proxy to the Rails app
+    * `SECRET_KEY_BASE` must equal a secure random string; once generated, it should not change; generate with
+
+      ```
+      ruby -r securerandom -e '$stdout << SecureRandom.hex(64)'
+      ```
+
+## Deployment
+
+### Salesforce setup
 
 - [Signup for a Developer Org](https://developer.salesforce.com/signup) if you don't have one yet.
 - Create a custom field in the Contact object so we can relate it to customers in Spree:
@@ -42,7 +95,7 @@ Salesforce eCommerce w/ Spree
   - In the tabs at the top, click the `+` sign
   - Pick "Price Books"
   - Click the "Standard Price Book"
-  - Note the ID in the URL (eg: na41.salesforce.com/`01sABCD`). Set that as the `PRICEBOOK_ID` in the environment
+  - Note the ID in the URL (eg: na41.salesforce.com/`01sABCD`). Set that as the `PRICEBOOK_ID` in the environment (locally **.env** and for deployment `heroku config:set`)
 
 And finally, to create the "Cancel Order" button in Salesforce:
 
@@ -81,9 +134,17 @@ And finally, to create the "Cancel Order" button in Salesforce:
     });
     ```
 
-
-## Heroku Connect setup:
+### Heroku Connect setup
 
 - Open the Connect dashboard, under org type check "Production"
 - Authorize with your Salesforce Org
 - Create mapping for the objects "Contact", "Product2", "Pricebook2", "PricebookEntry", "Order__c" and "LineItem__c". For now just pick all fields (temporary, we can filter this later)
+
+### Heroku app setup
+
+- `heroku config:set` for each of the environment variables
+- `heroku labs:enable runtime-dyno-metadata` (this supports release-scoped cache; see `HerokuDynoMetadata` in [config/environments/production.rb](config/environments/production.rb))
+
+### Amazon S3 setup
+
+*Ideally we have the Heroku S3 Add-on attached. Then, it just works.*
