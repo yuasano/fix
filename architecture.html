@@ -12,17 +12,17 @@ permalink: /architecture/
   </div>
 
   <div class="row">
-    <div class="col-sm-6 col-lg-3 stacked-block">
+    <div class="col-sm-6 col-lg-4 stacked-block">
       <h2>Customer-focused, mobile &amp; desktop website</h2>
       <p>Customers get a device-optimized experience regardless of how they access the storefront. The user interface is implemented by Spree Commerce with Ruby on Rails HTML templates and <a href="http://getbootstrap.com">Bootstrap</a> responsive CSS.</p>
     </div>
-    <div class="col-sm-6 col-lg-3 stacked-block">
+    <div class="col-sm-6 col-lg-4 stacked-block">
       <h2>Scalable eCommerce server</h2>
       <p>The server is an app running on <a href="https://devcenter.heroku.com/articles/dynos">Heroku Dynos</a>, exposing both a web-based interface for customers as well as a REST/HTTP API for integration with other systems.</p>
       <p>The number of dynos can be scaled-up with a single command to support surges of traffic, without constantly paying for extra-capacity.</p>
       <p><a href="https://spreecommerce.com">Spree Commerce</a> provides everything needed to launch an eCommerce site, from payment gateway integrations to multi-location inventory control. Its built on <a href="http://rubyonrails.org">Ruby on Rails</a>, allowing complete customization by developers.</p>
     </div>
-    <div class="col-sm-6 col-lg-3 stacked-block">
+    <div class="col-sm-6 col-lg-4 stacked-block">
       <h2>Salesforce synchronization</h2>
       <p><a href="https://www.heroku.com/connect">Heroku Connect</a> synchronizes storefront data from Heroku Postgres to Salesforce:</p>
       <ul>
@@ -47,11 +47,29 @@ permalink: /architecture/
       </ul>
       <p>Easily configured with a point and click UI, developers can further extend the integration with Salesforce using rate-limit free, bi-directional synchronization.</p>
     </div>
-    <div class="col-sm-6 col-lg-3 stacked-block">
+    <div class="col-sm-6 col-lg-4 stacked-block">
       <h2>Employee-facing, Salesforce workflow</h2>
-      <p>Records in Salesforce may be supplemented with <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=customize_enterprise.htm&language=en_US">Custom Buttons</a> that invoke API calls to the eCommerce server.</p>
+      <p>Records in Salesforce may be supplemented with <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=customize_enterprise.htm&amp;language=en_US">Custom Buttons</a> that invoke API calls to the eCommerce server.</p>
       <p>For example, a "Cancel Order" button that triggers a REST/HTTP API call to Spree, immediately cancelling the order.</p>
       <p>Employees get a unified workflow, providing only the management functions needed to get the job done.</p>
+    </div>
+    <div class="col-sm-6 col-lg-4 stacked-block">
+      <h2>Choice of payment gateways</h2>
+      <p>Spree uses the Ruby <a href="http://activemerchant.org">ActiveMerchant</a> library for payment integration. Select payment processing services based on business requirements. Choose from:</p>
+      <ul>
+        <li>AuthorizeNet/CIM</li>
+        <li>Braintree</li>
+        <li>PayPal</li>
+        <li>Payflow Pro</li>
+        <li>Skrill QuickCheckout</li>
+        <li>Spreedly</li>
+        <li>Stripe</li>
+        <li><a href="https://github.com/activemerchant/active_merchant/wiki/gatewayfeaturematrix">&amp; many more&hellip;</a></li>
+      </ul>
+    </div>
+    <div class="col-sm-6 col-lg-4 stacked-block">
+      <h2>Delegate fulfillment</h2>
+      <p>Whether outsourcing pick &amp; ship to a service like <a href="http://www.shipstation.com/">Shipstation</a> or pushing orders into a legacy fulfillment pipeline, the eCommerce server may be customized to emit order data in real time or use the API to perform daily batches.</p>
     </div>
   </div>
 </div>
