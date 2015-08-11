@@ -1,0 +1,129 @@
+#!/usr/bin/env ruby
+require_relative '../config/boot'
+require "thor"
+require "aws-sdk"
+require "fileutils"
+ 
+class MyCLI < Thor
+  DB_NAME='spree_dev'.freeze
+  SAMPLE_DIR='sample'.freeze
+  DB_OUTPUT_FILE='fix.sql'.freeze
+  S3_OUTPUT_DIR='s3'.freeze
+
+  class_option :database, desc: 'Name of the database', banner: 'NAME', default: DB_NAME, aliases: ['d'], type: :string
+
+  desc "import", "loads demo data into the database & Amazon S3"
+  def import
+    invoke :import_db
+    invoke :import_s3
+  end
+
+  desc "export", "saves demo data from the database & Amazon S3"
+  def export
+    invoke :export_db
+    invoke :export_s3
+  end
+
+  desc "import_db", "loads products & kits into the database"
+  def import_db
+    puts "import_db"
+  end
+
+  desc "import_s3", "loads image assets into S3"
+  def import_s3
+    puts "import_s3"
+  end
+
+  desc "export_db", "saves products & kits from the database to a Postgres SQL file"
+  def export_db
+    output_file = File.join(SAMPLE_DIR, DB_OUTPUT_FILE)
+    puts "...writing #{output_file}"
+
+    FileUtils.mkdir_p(File.join(SAMPLE_DIR))
+
+    system <<-HEREDOC
+      pg_dump -d #{options[:database]} -a \
+        -t friendly_id_slugs \
+        -t spree_assets \
+        -t spree_option_types \
+        -t spree_option_types_prototypes \
+        -t spree_option_values \
+        -t spree_option_values_variants \
+        -t spree_prices \
+        -t spree_product_option_types \
+        -t spree_product_properties \
+        -t spree_products \
+        -t spree_products_promotion_rules \
+        -t spree_products_taxons \
+        -t spree_promotion_categories \
+        -t spree_promotion_rules \
+        -t spree_promotion_rules_users \
+        -t spree_promotions \
+        -t spree_properties \
+        -t spree_properties_prototypes \
+        -t spree_prototypes \
+        -t spree_stock_locations \
+        -t spree_stores \
+        -t spree_tax_categories \
+        -t spree_tax_rates \
+        -t spree_taxonomies \
+        -t spree_taxons \
+        -t spree_taxons_promotion_rules \
+        -t spree_taxons_prototypes \
+        -t spree_variants \
+        > #{output_file}
+    HEREDOC
+  end
+
+  desc "export_s3", "saves image assets from S3"
+  def export_s3
+    assert_env_present('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'AWS_S3_BUCKET')
+
+    FileUtils.mkdir_p(File.join(SAMPLE_DIR, S3_OUTPUT_DIR))
+
+    AWS.config(
+      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
+
+    aws_s3 = AWS::S3.new
+    aws_s3_bucket = aws_s3.buckets[ENV['AWS_S3_BUCKET']]
+    # Support for Heroku S3 Add-on
+    aws_s3_path = ENV['AWS_S3_PATH'] ? ENV['AWS_S3_PATH'] : nil
+
+    tree = aws_s3_bucket.as_tree(prefix: aws_s3_path)
+
+    recurse_s3_objects(tree) do |leaf|
+      key_parts = leaf.member.key.split('/')
+      path = File.join(SAMPLE_DIR, S3_OUTPUT_DIR, *key_parts[0..-2])
+      name = key_parts[-1]
+      puts "...writing #{path}/#{name}"
+      FileUtils.mkdir_p path
+      File.open(File.join(path, name), 'wb') do |file|
+        leaf.member.read do |chunk|
+          file.write(chunk)
+        end
+      end
+    end
+  end
+
+  private
+
+  def assert_env_present(*args)
+    args.each do |name|
+      raise ArgumentError, "#{name} env variable must be set" if ENV[name].to_s.empty?
+    end
+  end
+
+  def recurse_s3_objects(tree, &block)
+    tree.children.each do |child|
+      if child.leaf?
+        block.call(child)
+      else
+        recurse_s3_objects(child, &block)
+      end
+    end
+  end
+
+end
+ 
+MyCLI.start(ARGV)
