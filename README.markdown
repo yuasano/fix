@@ -9,6 +9,8 @@ Spree is built on Ruby on Rails, so customizing it is an exercise in altering an
 
 These are the hot-zones of customization used to create FIX:
 
+### Customized Code
+
 * [Spree app config set in an initializer](config/initializers/spree.rb) (see [Configuration Options](https://guides.spreecommerce.com/developer/preferences.html#spree-configuration-options))
 * [SCSS/Bootstrap style overrides](app/assets/stylesheets/spree/frontend/frontend_bootstrap.css.scss)
 * Views:
@@ -16,6 +18,13 @@ These are the hot-zones of customization used to create FIX:
   * [Deface view overrides](app/overrides/white_label) (see [Deface](https://github.com/spree/deface/blob/master/README.markdown))
   * various [partials](app/views/white_label) called from overrides
 
+### Customized Admin UI
+
+* Editing a Taxon: Images
+  * **hero** white-matte product shot, cropped to fit content (no requisite aspect ratio)
+  * **group** white-matte product shot, square aspect ratio
+  * **style** "lifestyle" shot, not neccessarily square
+  * **icon** (currently unused)
 
 ## Development
 
