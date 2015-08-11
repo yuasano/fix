@@ -36,16 +36,6 @@ These are the hot-zones of customization used to create FIX:
   ```
   cd fix
   ```
-1. Install the Ruby bundle
-
-  ```
-  bundle install --path vendor/bundle
-  ```
-1. Initialize the database
-
-  ```
-  bundle exec rake db:create railties:install:migrations db:migrate db:seed
-  ```
 1. Set environment variables
 
   ```
@@ -62,6 +52,11 @@ These are the hot-zones of customization used to create FIX:
       ```
       ruby -r securerandom -e '$stdout << SecureRandom.hex(64)'
       ```
+1. Set-up required Ruby gems & prepare the database
+
+  ```
+  bin/setup
+  ```
 1. (optional) Import **FIX curated coffee components** demo product & kit data into the currently configured database & S3 bucket
 
   ```
