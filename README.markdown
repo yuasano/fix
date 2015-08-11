@@ -62,6 +62,11 @@ These are the hot-zones of customization used to create FIX:
       ```
       ruby -r securerandom -e '$stdout << SecureRandom.hex(64)'
       ```
+1. (optional) Import **FIX curated coffee components** demo product & kit data into the currently configured database & S3 bucket
+
+  ```
+  foreman run bin/fix import
+  ```
 
 ## Deployment
 
