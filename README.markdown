@@ -62,6 +62,11 @@ These are the hot-zones of customization used to create FIX:
       ```
       ruby -r securerandom -e '$stdout << SecureRandom.hex(64)'
       ```
+1. (optional) Import **FIX curated coffee components** demo product & kit data into the currently configured database & S3 bucket
+
+  ```
+  foreman run bin/fix import
+  ```
 
 ## Deployment
 
@@ -148,3 +153,15 @@ And finally, to create the "Cancel Order" button in Salesforce:
 ### Amazon S3 setup
 
 *Ideally we have the Heroku S3 Add-on attached. Then, it just works.*
+
+https://devcenter.heroku.com/articles/paperclip-s3
+
+### Exporting demo data
+
+**Heroku-internal**, only required to generate the sample SQL & S3 assets.
+
+Saves the current product & kit SQL data-only (not schema) & S3 assets into the `sample/` directory, where the `bin/fix import` tool looks for it.
+
+```
+foreman run bin/fix export -- -d $DATABASE_NAME
+```

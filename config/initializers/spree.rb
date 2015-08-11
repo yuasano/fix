@@ -28,6 +28,7 @@ Spree.config do |config|
   end
 end
 
+# Support for Heroku S3 Add-on
 aws_s3_path = ENV['AWS_S3_PATH'] ? "/#{ENV['AWS_S3_PATH']}" : ''
 
 paperclip_s3_config = {
