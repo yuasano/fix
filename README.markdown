@@ -156,9 +156,24 @@ And finally, to create the "Cancel Order" button in Salesforce:
 
 ### Amazon S3 setup
 
-*Ideally we have the Heroku S3 Add-on attached. Then, it just works.*
+1. Setup Amazon S3 https://devcenter.heroku.com/articles/s3
+1. Capture the S3 credentials just created into config variables named:
 
-https://devcenter.heroku.com/articles/paperclip-s3
+  * `AWS_REGION`
+  * `AWS_ACCESS_KEY_ID`
+  * `AWS_SECRET_ACCESS_KEY`
+  * `AWS_S3_BUCKET`
+
+  ```
+  heroku config:set AWS_REGION=XXXXX AWS_ACCESS_KEY_ID=YYYYYY AWS_SECRET_ACCESS_KEY=ZZZZZ AWS_S3_BUCKET=WWWWW
+  ```
+
+  To successfully upload demo data (`foreman run bin/fix import`) from your local machine, set these values in **.env**.
+1. Allow public, anonymous users to read data from the bucket
+  1. In the S3 web console, select the bucket, and go to **Properties**: **Permissions**
+  1. **Add more permisssions**
+  1. Set Grantee to **Everyone** with only **View Permissions**
+  1. **Save**
 
 ### Exporting demo data
 
