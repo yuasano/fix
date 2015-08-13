@@ -1,8 +1,6 @@
 Salesforce eCommerce w/ Spree
 =============================
 
-
-
 ## Customizations
 
 Spree is built on Ruby on Rails, so customizing it is an exercise in altering and extending a large Rails app.
