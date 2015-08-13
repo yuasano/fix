@@ -1,13 +1,13 @@
 {
-  "name": "Heroku Spree Commerce",
+  "name": "FIX",
   "description": "Image-focused, white-label Spree Commerce site integrated with Salesforce",
   "keywords": [
     "ecommerce",
     "ruby",
     "salesforce"
   ],
-  "website": "https://github.com/heroku/spree-sfdc",
-  "repository": "https://github.com/heroku/spree-sfdc.git",
+  "website": "https://github.com/heroku/fix",
+  "repository": "https://github.com/heroku/fix.git",
   "success_url": "/admin",
   "scripts": {
     "postdeploy": "bin/setup"
