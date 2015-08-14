@@ -29,11 +29,10 @@ class MyCLI < Thor
   desc "import_db", "loads products & kits into the database"
   def import_db
     input_file = File.join(SAMPLE_DIR, DB_OUTPUT_FILE)
-    puts "...loading #{input_file}"
+    puts "...loading #{DB_OUTPUT_FILE_PATH}"
 
-    system <<-HEREDOC
-      psql -d #{options[:database]} --single-transaction --echo-all < #{input_file}
-    HEREDOC
+    data = File.read(DB_OUTPUT_FILE_PATH)
+    data.split(";").each {|line| ActiveRecord::Base.connection.execute(line) unless line.empty? }
   end
 
   desc "import_s3", "loads image assets into S3"
@@ -69,7 +68,7 @@ class MyCLI < Thor
     FileUtils.mkdir_p(File.join(SAMPLE_DIR))
 
     system <<-HEREDOC
-      pg_dump -d #{options[:database]} -a \
+      pg_dump --data-only --column-inserts #{options[:database]} -a \
         -t friendly_id_slugs \
         -t spree_assets \
         -t spree_option_types \
