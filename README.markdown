@@ -69,7 +69,7 @@ These are the hot-zones of customization used to create FIX:
 1. (optional) Import **FIX curated coffee components** demo product & kit data into the currently configured database & S3 bucket
 
   ```
-  foreman run bin/fix import
+  rake fix:import
   ```
 
 ## Deployment
@@ -182,5 +182,5 @@ And finally, to create the "Cancel Order" button in Salesforce:
 Saves the current product & kit SQL data-only (not schema) & S3 assets into the `sample/` directory, where the `bin/fix import` tool looks for it.
 
 ```
-foreman run bin/fix export -- -d $DATABASE_NAME
+rake fix:export DATABASE_NAME=$DATABASE_NAME
 ```
