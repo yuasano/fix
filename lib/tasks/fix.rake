@@ -24,7 +24,7 @@ namespace :fix do
 
   namespace :import do
 
-    desc "loads products & kits into the database"
+    desc "loads products & kits into the database; uses the configured ActiveRecord database"
     task :db => :environment do
       input_file = File.join(SAMPLE_DIR, DB_OUTPUT_FILE)
       puts "...loading #{DB_OUTPUT_FILE_PATH}"
@@ -63,20 +63,24 @@ namespace :fix do
   end
 
   namespace :export do
-    desc "saves products & kits from the database to a Postgres SQL file on the local filesystem (#{DB_OUTPUT_FILE_PATH})"
+    desc "saves products & kits from the database (#{DB_NAME}) to a Postgres SQL file on the local filesystem (#{DB_OUTPUT_FILE_PATH}); override default database w/ `DATABASE_NAME=xxxxx`"
     task :db do
-      puts "...writing #{DB_OUTPUT_FILE_PATH}"
+      database_name = ENV['DATABASE_NAME'] || DB_NAME;
+      puts "...exporting from #{database_name} into #{DB_OUTPUT_FILE_PATH}"
 
       FileUtils.mkdir_p(File.join(SAMPLE_DIR))
 
       system <<-HEREDOC
-        pg_dump --data-only --column-inserts #{options[:database]} -a \
+        pg_dump --data-only --column-inserts #{database_name} -a \
           -t friendly_id_slugs \
           -t spree_assets \
+          -t spree_calculators \
+          -t spree_inventory_units \
           -t spree_option_types \
           -t spree_option_types_prototypes \
           -t spree_option_values \
           -t spree_option_values_variants \
+          -t spree_payment_methods \
           -t spree_prices \
           -t spree_product_option_types \
           -t spree_product_properties \
@@ -90,6 +94,11 @@ namespace :fix do
           -t spree_properties \
           -t spree_properties_prototypes \
           -t spree_prototypes \
+          -t spree_shipping_method_categories \
+          -t spree_shipping_methods \
+          -t spree_shipping_methods_zones \
+          -t spree_shipping_rates \
+          -t spree_stock_items \
           -t spree_tax_categories \
           -t spree_tax_rates \
           -t spree_taxonomies \

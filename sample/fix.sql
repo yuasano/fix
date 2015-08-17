@@ -89,6 +89,98 @@ SELECT pg_catalog.setval('spree_assets_id_seq', 64, true);
 
 
 --
+-- Data for Name: spree_calculators; Type: TABLE DATA; Schema: public; Owner: mars.hall
+--
+
+INSERT INTO spree_calculators (id, type, calculable_id, calculable_type, created_at, updated_at, preferences) VALUES (1, 'Spree::Calculator::Shipping::FlatRate', 1, 'Spree::ShippingMethod', '2015-06-03 20:33:55.24138', '2015-06-03 20:34:02.618001', '---
+:amount: !ruby/object:BigDecimal 18:0.8E1
+:currency: USD
+');
+
+
+--
+-- Name: spree_calculators_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mars.hall
+--
+
+SELECT pg_catalog.setval('spree_calculators_id_seq', 1, true);
+
+
+--
+-- Data for Name: spree_inventory_units; Type: TABLE DATA; Schema: public; Owner: mars.hall
+--
+
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (3, 'backordered', 1, 2, 3, '2015-06-03 21:11:41.326097', '2015-06-03 21:11:46.870478', false, 2);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (4, 'backordered', 2, 3, 4, '2015-06-03 21:43:24.380741', '2015-06-03 21:43:32.806075', false, 3);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (5, 'backordered', 1, 3, 4, '2015-06-03 21:43:24.390696', '2015-06-03 21:43:32.809209', false, 4);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (6, 'backordered', 1, 5, 5, '2015-06-30 20:07:13.678437', '2015-06-30 20:07:23.360047', false, 6);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (7, 'backordered', 1, 5, 5, '2015-06-30 20:07:13.692024', '2015-06-30 20:07:23.36264', false, 6);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (8, 'backordered', 2, 6, 6, '2015-06-30 20:31:01.540782', '2015-06-30 20:31:19.6735', false, 7);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (9, 'backordered', 1, 7, 7, '2015-07-07 03:52:14.024056', '2015-07-07 03:52:21.114522', false, 8);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (10, 'backordered', 1, 7, 7, '2015-07-07 03:52:14.040885', '2015-07-07 03:52:21.118162', false, 8);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (11, 'backordered', 2, 7, 7, '2015-07-07 03:52:14.053265', '2015-07-07 03:52:21.121709', false, 9);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (12, 'backordered', 1, 8, 8, '2015-07-07 20:59:54.05775', '2015-07-07 21:01:00.48961', false, 10);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (13, 'backordered', 1, 9, 9, '2015-07-07 21:03:40.327187', '2015-07-07 21:03:46.079814', false, 11);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (16, 'backordered', 1, 11, 11, '2015-07-07 23:45:48.30685', '2015-07-07 23:45:55.852463', false, 14);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (17, 'backordered', 1, 11, 11, '2015-07-07 23:45:48.37522', '2015-07-07 23:45:55.855387', false, 14);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (18, 'backordered', 1, 12, 12, '2015-07-08 19:59:08.523328', '2015-07-08 19:59:13.404307', false, 15);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (24, 'backordered', 1, 15, 16, '2015-07-09 23:14:45.319741', '2015-07-09 23:14:54.339502', false, 20);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (27, 'backordered', 1, 17, 18, '2015-07-10 23:15:13.688103', '2015-07-10 23:15:19.656358', false, 22);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (28, 'backordered', 1, 17, 18, '2015-07-10 23:15:13.71635', '2015-07-10 23:15:19.660914', false, 22);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (29, 'backordered', 1, 17, 18, '2015-07-10 23:15:13.74134', '2015-07-10 23:15:19.666626', false, 22);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (33, 'backordered', 1, 20, 20, '2015-07-13 20:53:15.881774', '2015-07-13 20:53:24.265281', false, 25);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (34, 'backordered', 1, 20, 20, '2015-07-13 20:53:15.902039', '2015-07-13 20:53:24.268478', false, 25);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (35, 'backordered', 1, 20, 20, '2015-07-13 20:53:15.910654', '2015-07-13 20:53:24.272239', false, 25);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (36, 'backordered', 1, 20, 20, '2015-07-13 20:53:15.927386', '2015-07-13 20:53:24.28075', false, 25);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (37, 'backordered', 1, 21, 21, '2015-07-13 23:16:44.528393', '2015-07-13 23:16:52.704402', false, 26);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (41, 'backordered', 1, 23, 24, '2015-07-14 22:42:29.225607', '2015-07-14 22:42:36.300707', false, 29);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (42, 'backordered', 1, 23, 24, '2015-07-14 22:42:29.236932', '2015-07-14 22:42:36.306102', false, 29);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (44, 'backordered', 46, 31, 26, '2015-07-24 22:17:19.639332', '2015-07-24 22:18:07.457753', false, 43);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (45, 'backordered', 1, 31, 26, '2015-07-24 22:17:19.647841', '2015-07-24 22:18:07.460712', false, 44);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (46, 'backordered', 4, 28, 27, '2015-08-06 01:46:56.983603', '2015-08-06 01:47:43.742732', false, 71);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (47, 'backordered', 11, 28, 27, '2015-08-06 01:46:56.992612', '2015-08-06 01:47:43.747788', false, 72);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (48, 'backordered', 10, 28, 27, '2015-08-06 01:46:57.000834', '2015-08-06 01:47:43.752772', false, 73);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (49, 'backordered', 51, 28, 27, '2015-08-06 01:46:57.00863', '2015-08-06 01:47:43.758277', false, 74);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (50, 'backordered', 3, 29, 28, '2015-08-06 19:59:07.838582', '2015-08-06 20:01:10.792376', false, 63);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (51, 'backordered', 5, 29, 28, '2015-08-06 19:59:07.871916', '2015-08-06 20:01:10.797835', false, 64);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (52, 'backordered', 6, 29, 28, '2015-08-06 19:59:07.9092', '2015-08-06 20:01:10.805906', false, 65);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (53, 'backordered', 7, 29, 28, '2015-08-06 19:59:07.940163', '2015-08-06 20:01:10.811447', false, 66);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (54, 'backordered', 8, 29, 28, '2015-08-06 19:59:07.957565', '2015-08-06 20:01:10.817194', false, 67);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (55, 'backordered', 51, 29, 28, '2015-08-06 19:59:07.977714', '2015-08-06 20:01:10.822321', false, 68);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (56, 'backordered', 3, 38, 29, '2015-08-07 01:42:11.720499', '2015-08-07 01:42:41.089418', false, 81);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (57, 'backordered', 5, 38, 29, '2015-08-07 01:42:11.734719', '2015-08-07 01:42:41.092529', false, 82);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (58, 'backordered', 45, 41, 30, '2015-08-12 16:06:02.092779', '2015-08-12 16:06:37.886246', false, 90);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (59, 'backordered', 5, 41, 30, '2015-08-12 16:06:02.13566', '2015-08-12 16:06:37.894', false, 91);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (60, 'backordered', 46, 41, 30, '2015-08-12 16:06:02.167554', '2015-08-12 16:06:37.903904', false, 92);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (61, 'backordered', 48, 41, 30, '2015-08-12 16:06:02.199722', '2015-08-12 16:06:37.910886', false, 93);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (62, 'backordered', 47, 41, 30, '2015-08-12 16:06:02.231709', '2015-08-12 16:06:37.915552', false, 94);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (63, 'backordered', 52, 41, 30, '2015-08-12 16:06:02.251836', '2015-08-12 16:06:37.925847', false, 95);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (64, 'backordered', 3, 42, 31, '2015-08-12 16:15:35.115312', '2015-08-12 16:15:35.115312', true, 96);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (65, 'backordered', 5, 42, 31, '2015-08-12 16:15:35.131257', '2015-08-12 16:15:35.131257', true, 97);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (66, 'backordered', 6, 42, 31, '2015-08-12 16:15:35.1438', '2015-08-12 16:15:35.1438', true, 98);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (67, 'backordered', 7, 42, 31, '2015-08-12 16:15:35.151733', '2015-08-12 16:15:35.151733', true, 99);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (68, 'backordered', 8, 42, 31, '2015-08-12 16:15:35.159485', '2015-08-12 16:15:35.159485', true, 100);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (69, 'backordered', 51, 42, 31, '2015-08-12 16:15:35.16845', '2015-08-12 16:15:35.16845', true, 101);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (70, 'backordered', 3, 30, 32, '2015-08-12 23:01:14.159514', '2015-08-12 23:01:29.997133', false, 41);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (71, 'backordered', 3, 30, 32, '2015-08-12 23:01:14.175538', '2015-08-12 23:01:30.003029', false, 41);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (72, 'backordered', 5, 30, 32, '2015-08-12 23:01:14.188625', '2015-08-12 23:01:30.008546', false, 42);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (73, 'backordered', 5, 30, 32, '2015-08-12 23:01:14.201457', '2015-08-12 23:01:30.013361', false, 42);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (74, 'backordered', 5, 30, 32, '2015-08-12 23:01:14.21415', '2015-08-12 23:01:30.01855', false, 42);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (75, 'backordered', 6, 30, 32, '2015-08-12 23:01:14.22725', '2015-08-12 23:01:30.023382', false, 57);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (76, 'backordered', 6, 30, 32, '2015-08-12 23:01:14.240253', '2015-08-12 23:01:30.029182', false, 57);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (77, 'backordered', 7, 30, 32, '2015-08-12 23:01:14.253672', '2015-08-12 23:01:30.034011', false, 114);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (78, 'backordered', 8, 30, 32, '2015-08-12 23:01:14.267085', '2015-08-12 23:01:30.038801', false, 115);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (79, 'backordered', 51, 30, 32, '2015-08-12 23:01:14.282188', '2015-08-12 23:01:30.044574', false, 116);
+INSERT INTO spree_inventory_units (id, state, variant_id, order_id, shipment_id, created_at, updated_at, pending, line_item_id) VALUES (80, 'backordered', 3, 45, 33, '2015-08-12 23:06:00.328349', '2015-08-12 23:06:13.485999', false, 117);
+
+
+--
+-- Name: spree_inventory_units_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mars.hall
+--
+
+SELECT pg_catalog.setval('spree_inventory_units_id_seq', 80, true);
+
+
+--
 -- Data for Name: spree_option_types; Type: TABLE DATA; Schema: public; Owner: mars.hall
 --
 
@@ -124,6 +216,20 @@ SELECT pg_catalog.setval('spree_option_values_id_seq', 1, false);
 -- Data for Name: spree_option_values_variants; Type: TABLE DATA; Schema: public; Owner: mars.hall
 --
 
+
+
+--
+-- Data for Name: spree_payment_methods; Type: TABLE DATA; Schema: public; Owner: mars.hall
+--
+
+INSERT INTO spree_payment_methods (id, type, name, description, active, deleted_at, created_at, updated_at, display_on, auto_capture, preferences) VALUES (1, 'Spree::PaymentMethod::Check', 'Check', '', true, NULL, '2015-06-03 20:27:38.649034', '2015-06-03 20:27:38.649034', '', NULL, NULL);
+
+
+--
+-- Name: spree_payment_methods_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mars.hall
+--
+
+SELECT pg_catalog.setval('spree_payment_methods_id_seq', 1, true);
 
 
 --
@@ -358,6 +464,112 @@ SELECT pg_catalog.setval('spree_properties_id_seq', 4, true);
 --
 
 SELECT pg_catalog.setval('spree_prototypes_id_seq', 1, false);
+
+
+--
+-- Data for Name: spree_shipping_method_categories; Type: TABLE DATA; Schema: public; Owner: mars.hall
+--
+
+INSERT INTO spree_shipping_method_categories (id, shipping_method_id, shipping_category_id, created_at, updated_at) VALUES (1, 1, 1, '2015-06-03 20:33:55.246427', '2015-06-03 20:33:55.246427');
+
+
+--
+-- Name: spree_shipping_method_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mars.hall
+--
+
+SELECT pg_catalog.setval('spree_shipping_method_categories_id_seq', 1, true);
+
+
+--
+-- Data for Name: spree_shipping_methods; Type: TABLE DATA; Schema: public; Owner: mars.hall
+--
+
+INSERT INTO spree_shipping_methods (id, name, display_on, deleted_at, created_at, updated_at, tracking_url, admin_name, tax_category_id, code) VALUES (1, 'USPS', '', NULL, '2015-06-03 20:33:55.237598', '2015-06-03 20:33:55.237598', '', 'usps', NULL, '');
+
+
+--
+-- Name: spree_shipping_methods_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mars.hall
+--
+
+SELECT pg_catalog.setval('spree_shipping_methods_id_seq', 1, true);
+
+
+--
+-- Data for Name: spree_shipping_methods_zones; Type: TABLE DATA; Schema: public; Owner: mars.hall
+--
+
+INSERT INTO spree_shipping_methods_zones (shipping_method_id, zone_id) VALUES (1, 1);
+INSERT INTO spree_shipping_methods_zones (shipping_method_id, zone_id) VALUES (1, 2);
+
+
+--
+-- Data for Name: spree_shipping_rates; Type: TABLE DATA; Schema: public; Owner: mars.hall
+--
+
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (25, 24, 1, true, 8.00, '2015-07-14 22:42:29.251552', '2015-07-14 22:42:32.618728', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (2, 3, 1, true, 8.00, '2015-06-03 21:11:41.338428', '2015-06-03 21:11:43.615727', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (5, 4, 1, true, 8.00, '2015-06-05 19:12:40.96886', '2015-06-05 19:12:40.981013', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (6, 5, 1, true, 8.00, '2015-06-30 20:07:13.706354', '2015-06-30 20:07:20.413924', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (7, 6, 1, true, 8.00, '2015-06-30 20:31:01.573892', '2015-06-30 20:31:10.836119', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (8, 7, 1, true, 8.00, '2015-07-07 03:52:14.063103', '2015-07-07 03:52:17.656704', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (9, 8, 1, true, 8.00, '2015-07-07 20:59:54.075528', '2015-07-07 21:00:45.613768', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (10, 9, 1, true, 8.00, '2015-07-07 21:03:40.334897', '2015-07-07 21:03:42.693926', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (12, 11, 1, true, 8.00, '2015-07-07 23:45:48.427572', '2015-07-07 23:45:52.410718', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (13, 12, 1, true, 8.00, '2015-07-08 19:59:08.544167', '2015-07-08 19:59:10.662144', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (17, 16, 1, true, 8.00, '2015-07-09 23:14:45.340367', '2015-07-09 23:14:49.261707', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (19, 18, 1, true, 8.00, '2015-07-10 23:15:13.758532', '2015-07-10 23:15:16.275736', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (21, 20, 1, true, 8.00, '2015-07-13 20:53:15.936667', '2015-07-13 20:53:19.898715', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (22, 21, 1, true, 8.00, '2015-07-13 23:16:44.557599', '2015-07-13 23:16:47.824094', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (27, 26, 1, true, 8.00, '2015-07-24 22:17:19.654708', '2015-07-24 22:17:28.640358', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (28, 27, 1, true, 8.00, '2015-08-06 01:46:57.01619', '2015-08-06 01:47:36.122997', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (29, 28, 1, true, 8.00, '2015-08-06 19:59:07.994118', '2015-08-06 20:01:01.641768', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (30, 29, 1, true, 8.00, '2015-08-07 01:42:11.746415', '2015-08-07 01:42:35.607925', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (31, 30, 1, true, 8.00, '2015-08-12 16:06:02.27897', '2015-08-12 16:06:23.314854', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (32, 31, 1, true, 8.00, '2015-08-12 16:15:35.17657', '2015-08-12 16:15:35.17657', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (33, 32, 1, true, 8.00, '2015-08-12 23:01:14.300482', '2015-08-12 23:01:21.554414', NULL);
+INSERT INTO spree_shipping_rates (id, shipment_id, shipping_method_id, selected, cost, created_at, updated_at, tax_rate_id) VALUES (34, 33, 1, true, 8.00, '2015-08-12 23:06:00.337365', '2015-08-12 23:06:09.418808', NULL);
+
+
+--
+-- Name: spree_shipping_rates_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mars.hall
+--
+
+SELECT pg_catalog.setval('spree_shipping_rates_id_seq', 34, true);
+
+
+--
+-- Data for Name: spree_stock_items; Type: TABLE DATA; Schema: public; Owner: mars.hall
+--
+
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (9, 1, 9, 0, '2015-07-23 00:50:11.847957', '2015-07-23 00:50:11.847957', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (12, 1, 12, 0, '2015-07-23 18:35:04.80242', '2015-07-23 18:35:04.80242', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (49, 1, 49, 0, '2015-07-23 20:17:12.39925', '2015-07-23 20:17:12.39925', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (50, 1, 50, 0, '2015-07-23 20:30:36.697335', '2015-07-23 20:30:36.697335', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (53, 1, 53, 0, '2015-08-04 20:46:01.472711', '2015-08-04 20:46:01.472711', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (1, 1, 1, -34, '2015-06-03 20:09:22.984914', '2015-08-04 20:50:34.110667', true, '2015-08-04 20:50:34.110667');
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (2, 1, 2, -6, '2015-06-03 21:40:45.86089', '2015-08-04 20:50:44.893844', true, '2015-08-04 20:50:44.893844');
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (54, 1, 54, 0, '2015-08-04 20:55:04.37352', '2015-08-04 20:55:04.37352', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (4, 1, 4, -1, '2015-07-20 17:31:08.421566', '2015-08-06 01:47:43.917252', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (11, 1, 11, -1, '2015-07-23 17:39:46.591658', '2015-08-06 01:47:44.133355', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (10, 1, 10, -1, '2015-07-23 17:35:55.988012', '2015-08-06 01:47:44.248558', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (45, 1, 45, -1, '2015-07-23 19:54:42.553962', '2015-08-12 16:06:38.121308', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (46, 1, 46, -2, '2015-07-23 20:02:27.364897', '2015-08-12 16:06:38.479307', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (48, 1, 48, -1, '2015-07-23 20:11:25.393253', '2015-08-12 16:06:38.641957', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (47, 1, 47, -1, '2015-07-23 20:07:35.493516', '2015-08-12 16:06:38.762101', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (52, 1, 52, -1, '2015-08-04 20:42:38.725372', '2015-08-12 16:06:38.935185', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (5, 1, 5, -6, '2015-07-20 17:47:08.137844', '2015-08-12 23:01:30.321787', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (6, 1, 6, -3, '2015-07-22 23:48:02.065025', '2015-08-12 23:01:30.512096', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (7, 1, 7, -2, '2015-07-22 23:55:38.416474', '2015-08-12 23:01:30.626573', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (8, 1, 8, -2, '2015-07-22 23:58:53.160221', '2015-08-12 23:01:30.79508', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (51, 1, 51, -3, '2015-08-04 20:38:29.04189', '2015-08-12 23:01:30.935035', true, NULL);
+INSERT INTO spree_stock_items (id, stock_location_id, variant_id, count_on_hand, created_at, updated_at, backorderable, deleted_at) VALUES (3, 1, 3, -5, '2015-07-15 22:58:11.674829', '2015-08-12 23:06:13.551928', true, NULL);
+
+
+--
+-- Name: spree_stock_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: mars.hall
+--
+
+SELECT pg_catalog.setval('spree_stock_items_id_seq', 54, true);
 
 
 --
