@@ -2165,7 +2165,15 @@ CREATE TABLE spree_taxons (
     hero_file_name character varying,
     hero_content_type character varying,
     hero_file_size integer,
-    hero_updated_at timestamp without time zone
+    hero_updated_at timestamp without time zone,
+    group_file_name character varying,
+    group_content_type character varying,
+    group_file_size integer,
+    group_updated_at timestamp without time zone,
+    style_file_name character varying,
+    style_content_type character varying,
+    style_file_size integer,
+    style_updated_at timestamp without time zone
 );
 
 
@@ -5317,4 +5325,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150707225035');
 INSERT INTO schema_migrations (version) VALUES ('20150708214736');
 
 INSERT INTO schema_migrations (version) VALUES ('20150708224309');
+
+INSERT INTO schema_migrations (version) VALUES ('20150723205155');
 
