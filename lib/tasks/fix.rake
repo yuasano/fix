@@ -12,14 +12,14 @@ namespace :fix do
 
   desc "saves demo data from the database & Amazon S3 (must run locally)"
   task :export do
-    Rake::Task['export:db'].invoke
-    Rake::Task['export:s3'].invoke
+    Rake::Task['fix:export:db'].invoke
+    Rake::Task['fix:export:s3'].invoke
   end
 
   desc "loads demo data into the database & Amazon S3 (may run on Heroku or locally)"
   task :import do
-    Rake::Task['import:db'].invoke
-    Rake::Task['import:s3'].invoke
+    Rake::Task['fix:import:db'].invoke
+    Rake::Task['fix:import:s3'].invoke
   end
 
   namespace :import do
