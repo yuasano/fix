@@ -46,7 +46,7 @@ namespace :fix do
       aws_s3 = AWS::S3.new
       aws_s3_bucket = aws_s3.buckets[ENV['AWS_S3_BUCKET']]
       # Support for Heroku S3 Add-on
-      aws_s3_path = ENV['AWS_S3_PATH'] ? ENV['AWS_S3_PATH'] : nil
+      aws_s3_path = ENV['AWS_S3_PATH'] ? ENV['AWS_S3_PATH'] : ''
 
       source_dir = File.join(SAMPLE_DIR, S3_OUTPUT_DIR)
 
