@@ -30,9 +30,12 @@ namespace :fix do
       puts "...loading #{DB_OUTPUT_FILE_PATH}"
 
       data = File.read(DB_OUTPUT_FILE_PATH)
-      ActiveRecord::Base.connection.execute(data)
 
-      # trigger full sync to Connect tables by iterating every Spree.Product.all.each &:save!
+      ActiveRecord::Base.transaction do
+        ActiveRecord::Base.connection.execute(data)
+
+        # trigger full sync to Connect tables by iterating every Spree.Product.all.each &:save!
+      end
     end
 
     desc "loads image assets into S3"
