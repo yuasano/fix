@@ -52,7 +52,7 @@ module HerokuConnect
   end
 
   module InstanceMethods
-    def sync_to_sfdc
+    def sync_to_sfdc(force_insert: false)
       columns = self.class.sfdc_mapping.map do |column, attr|
         val = attr.is_a?(Proc) ? attr.call(self) : self.send(attr)
         [column, val]
@@ -60,7 +60,7 @@ module HerokuConnect
 
       conditions = nil
       # can't use new_record?, it's always false on after_save hooks
-      if !id_changed?
+      if !id_changed? && !force_insert
         sfdc_id = self.class.sfdc_mapping.detect do |column, attr|
           attr == :id
         end.first

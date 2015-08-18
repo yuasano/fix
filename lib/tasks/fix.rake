@@ -36,7 +36,10 @@ namespace :fix do
 
         # trigger HerokuConnect sync of all registered models
         HerokuConnect.models.each do |model|
-          model.all.each(&:save!)
+          puts "...syncing #{model.name} with Connect (#{model.all.size} #{model.all.size === 1 ? 'record' : 'records'})"
+          model.all.each do |record|
+            record.sync_to_sfdc(force_insert: true)
+          end
         end
       end
     end
