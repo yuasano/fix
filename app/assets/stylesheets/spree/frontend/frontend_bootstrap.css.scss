@@ -28,6 +28,7 @@ strong, .lead {
 .alert-notice {
   @extend .alert-warning;
 }
+.alert-error,
 .alert-alert {
   @extend .alert-danger;
 }
