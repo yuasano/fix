@@ -34,7 +34,10 @@ namespace :fix do
       ActiveRecord::Base.transaction do
         ActiveRecord::Base.connection.execute(data)
 
-        # trigger full sync to Connect tables by iterating every Spree.Product.all.each &:save!
+        # trigger HerokuConnect sync of all registered models
+        HerokuConnect.models.each do |model|
+          model.all.each(&:save!)
+        end
       end
     end
 

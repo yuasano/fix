@@ -1,6 +1,12 @@
 module HerokuConnect
   extend ActiveSupport::Concern
 
+  # set of the ActiveRecord models registered for sync via ClassMethods.heroku_connect
+  @models = Set.new
+  def self.models
+    @models
+  end
+
   def self.sync(table_name, columns, conditions=nil)
     return unless ActiveRecord::Base.connection.table_exists?(table_name)
 
@@ -40,6 +46,9 @@ module HerokuConnect
       self.sfdc_mapping = mapping
 
       include HerokuConnect::InstanceMethods
+
+      # collect the Connect-synced classes into the set HerokuConnect.models
+      @models << self
     end
   end
 
