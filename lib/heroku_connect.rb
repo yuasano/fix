@@ -2,9 +2,8 @@ module HerokuConnect
   extend ActiveSupport::Concern
 
   # set of the ActiveRecord models registered for sync via ClassMethods.heroku_connect
-  @models = Set.new
   def self.models
-    @models
+    @models ||= Set.new
   end
 
   def self.sync(table_name, columns, conditions=nil)
@@ -48,7 +47,7 @@ module HerokuConnect
       include HerokuConnect::InstanceMethods
 
       # collect the Connect-synced classes into the set HerokuConnect.models
-      @models << self
+      HerokuConnect.models << self
     end
   end
 
