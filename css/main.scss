@@ -18,6 +18,11 @@
   line-height: 40px;
 }
 
+h1.jumbotron-header {
+  font-size: 18px;
+  font-weight: 300;
+}
+
 .footer {
   color: #ccc;
 }
@@ -49,11 +54,6 @@
   
   .fit-image {
     padding-bottom: 60px;
-
-    h1 {
-      font-size: 18px;
-      font-weight: 300;
-    }
   }  
 
   @media (min-width: $screen-xs-min) {

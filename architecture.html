@@ -7,6 +7,7 @@ permalink: /architecture/
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      <h1 class="jumbotron-header">Reference Architecture for eCommerce on Heroku</h1>
       <img src="{{ '/images/architecture.png' | prepend: site.baseurl }}" width="100%" alt="System Diagram">
     </div>
   </div>
@@ -19,8 +20,8 @@ permalink: /architecture/
     <div class="col-sm-6 col-lg-4 stacked-block">
       <h2>Scalable eCommerce server</h2>
       <p>The server is an app running on <a href="https://devcenter.heroku.com/articles/dynos">Heroku Dynos</a>, exposing both a web-based interface for customers as well as a REST/HTTP API for integration with other systems.</p>
-      <p>The number of dynos can be scaled-up with a single command to support surges of traffic, without constantly paying for extra-capacity.</p>
-      <p><a href="https://spreecommerce.com">Spree Commerce</a> provides everything needed to launch an eCommerce site, from payment gateway integrations to multi-location inventory control. Its built on <a href="http://rubyonrails.org">Ruby on Rails</a>, allowing complete customization by developers.</p>
+      <p>The number of dynos can be scaled-up with a single command to support surges of traffic for seasonal events, consumer promotions, or media placements.</p>
+      <p><a href="https://spreecommerce.com">Spree Commerce</a> provides everything needed to launch an eCommerce site, from payment gateway integrations to multi-location inventory control. It's built on <a href="http://rubyonrails.org">Ruby on Rails</a>, allowing complete customization by developers.</p>
     </div>
     <div class="col-sm-6 col-lg-4 stacked-block">
       <h2>Salesforce synchronization</h2>
@@ -45,7 +46,7 @@ permalink: /architecture/
           </ul>
         </li>
       </ul>
-      <p>Easily configured with a point and click UI, developers can further extend the integration with Salesforce using rate-limit free, bi-directional synchronization.</p>
+      <p>Easily configured with a point and click UI, developers can further extend the integration to any standard or custom Salesforce object.</p>
     </div>
     <div class="col-sm-6 col-lg-4 stacked-block">
       <h2>Employee-facing, Salesforce workflow</h2>

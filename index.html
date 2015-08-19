@@ -6,58 +6,57 @@ layout: default
   <div class="container fit-image"
     style="background-image: url({{ '/images/fix-product-comp.jpg' | prepend: site.baseurl }})">
     <img src="{{ '/images/fix-logotype.png' | prepend: site.baseurl }}" width="99" height="56" alt="Fix">
-    <h1>Reference Architecture</h1>
+    <h1 class="jumbotron-header">Reference Architecture for eCommerce on Heroku</h1>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
     <div class="col-md-8 stacked-block">
-      <p><a href="{{ site.demo_url }}">FIX</a> is a sample responsive web application that demonstrates how to build ecommerce systems with Salesforce and open-source frameworks like Ruby on Rails.</p>
+      <p><a href="{{ site.demo_url }}">FIX</a> is a sample responsive web application that demonstrates how to build ecommerce systems with open-source frameworks like Ruby on Rails that seamlessly integrate data with Salesforce.</p>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-3 stacked-block">
       <img src="{{ '/images/salesforce.png' | prepend: site.baseurl }}" width="133" height="133" alt="Salesforce" class="stacked-block">
       <p>Track all your customer information and interactions in one place. The #1 CRM solution takes sales and support automation to new heights, with the power to grow with your business.</p>
-      <p>FIX uses Salesforce as the system of record for customer support agents.</p>
-      <p><a class="btn btn-default" href="http://www.salesforce.com" target="_blank">Salesforce website &raquo;</a></p>
+      <p>FIX synchronizes customer, order, and product data with <a href="http://www.salesforce.com">Salesforce</a>.</p>
     </div>
     <div class="col-sm-3 stacked-block">
       <img src="{{ '/images/heroku-logo.png' | prepend: site.baseurl }}" width="90" height="133" alt="Heroku" class="stacked-block">
-      <p>Heroku makes the processes of deploying, configuring, scaling, tuning, and managing apps as simple and straightforward as possible, so developers can focus on what’s most important: building great apps.</p>
-      <p>FIX uses Heroku's cloud platform to run the Ruby on Rails app and all of its supporting services.</p>
-      <p><a class="btn btn-default" href="https://www.heroku.com/home" target="_blank">Heroku website &raquo;</a></p>
+      <p>Heroku makes the processes of deploying, configuring, scaling, tuning, and managing apps as simple and straightforward as possible, so developers can focus on what’s most important: building customer experiences.</p>
+      <p>FIX uses <a href="https://www.heroku.com/home">Heroku</a> to run the Ruby on Rails app and all of its supporting services.</p>
     </div>
     <div class="col-sm-3 stacked-block">
       <img src="{{ '/images/connect-logo.png' | prepend: site.baseurl }}" width="115" height="133" alt="Heroku Connect" class="stacked-block">
-      <p>Using bi-directional synchronization between Salesforce and Heroku Postgres, Heroku Connect unifies the data in your Postgres database with the contacts, accounts, or any type of object in the Salesforce database.</p>
-      <p>FIX uses Connect to instantly reflect customers and their orders as Salesforce records.</p>
-      <p><a class="btn btn-default" href="https://www.heroku.com/connect" target="_blank">Connect website &raquo;</a></p>
+      <p>Using bi-directional synchronization between Salesforce and Heroku Postgres, Heroku Connect unifies the data in your Postgres database with Contacts, Accounts, and other standard and custom Salesforce objects.</p>
+      <p>FIX uses <a href="https://www.heroku.com/connect">Connect</a> to instantly reflect customer and order data as Salesforce records.</p>
     </div>
     <div class="col-sm-3 stacked-block">
       <img src="{{ '/images/spree-logo.png' | prepend: site.baseurl }}" width="133" height="133" alt="Spree Commerce" class="stacked-block">
-      <p>The Spree storefront offers a full feature set and is built on common standards. The modular platform allows you to easily configure, supplement or replace any functionality you need, so that you can build the exact storefront that you want.</p>
-      <p>FIX uses a customized version of Spree to produce the eCommerce experience and processes.</p>
-      <p><a class="btn btn-default" href="https://spreecommerce.com" target="_blank">Spree website &raquo;</a></p>
+      <p>The Spree storefront offers a full eCommerce feature set and is built on common web standards. Many eCommerce apps on Heroku use open-source projects such as Magento, OpenCart, or Spree to power their customer experience.</p>
+      <p>FIX uses a customized version of <a href="https://spreecommerce.com">Spree</a> to produce the eCommerce experience and processes.</p>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6 stacked-block">
-      <p>This site demonstrates just one of many ways to implement an eCommerce site with today's technology. For FIX, we decided to build on an existing, tried-and-true system that already solves many of the complex eCommerce problems:</p>
+    <div class="col-sm-4 stacked-block">
+      <h3>The FIX project demonstrates how to implement an eCommerce site using open source technologies and Salesforce.</h3>
+    </div>
+    <div class="col-sm-4 stacked-block">
+      <h3>eCommerce Features</h3>
       <ul>
+        <li>shopping cart</li>
         <li>modular payment gateway integration</li>
         <li>inventory control</li>
-        <li>product variants</li>
-        <li>sales tax calculation</li>
-        <li>shipping cost calculation</li>
+        <li>sales tax and shipping cost calculation</li>
       </ul>
     </div>
-    <div class="col-sm-6 stacked-block">
-      <p>References for more ways to build an eCommerce site</p>
+    <div class="col-sm-4 stacked-block">
+      <h3>Salesforce Features</h3>
       <ul>
-        <li></li>
-        <li></li>
+        <li>complete customer record</li>
+        <li>order history including line items</li>
+        <li>seamless integration of eCommerce operation with existing Salesforce deployments</li>
       </ul>
     </div>
   </div>
