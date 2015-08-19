@@ -9,6 +9,7 @@ twitter_username: heroku
 github_username:  heroku
 demo_url: https://sample-spree.herokuapp.com
 github_url: https://github.com/heroku/fix
+installer_url: https://getyourfix.herokuapp.com
 
 # Build settings
 markdown: kramdown
