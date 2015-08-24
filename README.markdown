@@ -171,8 +171,24 @@ And finally, to create the "Cancel Order" button in Salesforce:
   To successfully upload demo data (`foreman run bin/fix import`) from your local machine, set these values in **.env**.
 1. Allow public, anonymous users to read data from the bucket
   1. In the S3 web console, select the bucket, and go to **Properties**: **Permissions**
-  1. **Add more permisssions**
-  1. Set Grantee to **Everyone** with only **View Permissions**
+  1. **Edit Bucket Policy**
+  1. Copy-paste in the following policy which allows anonomous read of the data
+    ```
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "AddPerm",
+          "Effect": "Allow",
+          "Principal": "*",
+          "Action": "s3:GetObject",
+          "Resource": "arn:aws:s3:::BUCKET_NAME/*"
+        }
+      ]
+    }
+    ```
+
+    Replace `BUCKET_NAME` with the exact name of the current bucket.
   1. **Save**
 
 ### Exporting demo data
