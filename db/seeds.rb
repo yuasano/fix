@@ -12,8 +12,9 @@ Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
 
 # for local development we need a standard Salesforce Pricebook set
 if ENV["DEPLOYMENT"] != "production"
-  puts ActiveRecord::Base.connection.execute("
+  ActiveRecord::Base.connection.execute("
     INSERT INTO salesforce.pricebook2 (sfid, name, isstandard)
     VALUES ('A001', 'Standard', TRUE)
   ")
+  puts "Created standard Salesforce pricebook."
 end
