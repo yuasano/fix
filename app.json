@@ -13,18 +13,23 @@
     "postdeploy": "bin/setup"
   },
   "env": {
+    "AWS_S3_BUCKET": {
+      "description": "Name of the S3 bucket where the images are hosted. By default, this is a shared, read-only bucket containing the FIX demo images.",
+      "value": "fix-coffee"
+    },
     "AWS_ACCESS_KEY_ID": {
-      "description": "Amazon Web Services key ID with read permissions to the bucket"
+      "description": "Amazon Web Services key ID with write permissions to the S3 bucket. Required only if you plan to add/edit products & kits in Spree"
     },
     "AWS_SECRET_ACCESS_KEY": {
-      "description": "secret for the given Amazon Web Services key"
+      "description": "Secret for the given Amazon Web Services key ID."
     },
     "AWS_REGION": {
-      "description": "Amazon Web Services region; only change if the app is intentionally deployed to another region",
+      "description": "Amazon Web Services region. Only change if the app is intentionally deployed to another region.",
       "value": "us-east-1"
     },
-    "AWS_S3_BUCKET": {
-      "description": "Name of the S3 bucket that can be read by the Amazon Web Services key"
+    "FIX_DEMO": {
+      "description": "Leave this blank if you want to deploy an empty storefront without the  sample products or custom FIX home screen.",
+      "value": "enabled"
     },
     "DEPLOYMENT": {
       "description": "Indicates the runtime location of the app; used to regulate behaviors which are different when running at Heroku",

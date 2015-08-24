@@ -19,4 +19,9 @@ Dir.chdir APP_ROOT do
 
   puts "\n== Preparing database =="
   system "AUTO_ACCEPT=1 bundle exec rake db:create railties:install:migrations db:migrate db:seed"
+
+  if ENV["FIX_DEMO"] === 'enabled'
+    puts "\n== Loading FIX demo data =="
+    system "bundle exec rake fix:import:db"
+  end
 end
