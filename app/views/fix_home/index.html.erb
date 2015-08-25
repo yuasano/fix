@@ -25,30 +25,29 @@
   <h1>Curated Coffee Components</h1>
 
   <ul class="products">
-    <li>
-      <img class="product-image" alt="">
-      <h3 class="product-name">AeroPress Coffee Maker</h3>
-      <div class="product-price">$29.99</div>
-      <div class="product-button"><a class="btn btn-hot" href="#">Add to Cart</a></div>
-    </li>
-    <li>
-      <img class="product-image" alt="">
-      <h3 class="product-name">MSR Reactor 2.5L Stove System</h3>
-      <div class="product-price">$159.99</div>
-      <div class="product-button"><a class="btn btn-hot" href="#">Add to Cart</a></div>
-    </li>
-    <li>
-      <img class="product-image" alt="">
-      <h3 class="product-name">Bunum Wo AA, Papua New Guinea</h3>
-      <div class="product-price">$21.99</div>
-      <div class="product-button"><a class="btn btn-hot" href="#">Add to Cart</a></div>
-    </li>
-    <li>
-      <img class="product-image" alt="">
-      <h3 class="product-name">Chemex Classic 6-cup Coffee Maker</h3>
-      <div class="product-price">$39.99</div>
-      <div class="product-button"><a class="btn btn-hot" href="#">Add to Cart</a></div>
-    </li>
+  <% cache(cache_key_for_taxon_children('featured')) do %>
+    <%- Spree::Taxon
+        .where(permalink: 'featured')
+        .first
+        .products.each do |product| -%>
+      <li>
+        <%= link_to product, class: "hot-link" do %>
+          <%= large_image(product,  class: "product-image", alt: "") %>
+          <h3 class="product-name"><%= product.name %></h3>
+        <% end %>
+        <div class="product-price"><%= product.display_price.to_html %></div>
+        
+        <%= form_for :order, url: populate_orders_path do |f| %>
+          <%= hidden_field_tag "variant_id", product.master.id %>
+          <%= hidden_field_tag "quantity", 1 %>
+          <div class="kit-button"><%= button_tag type: :submit, class: "btn btn-hot" do %>
+            Add to Cart
+          <% end %></div>
+        <% end %>
+      </li>
+
+    <%- end -%>
+  <% end %>
   </ul>
 
 </section>
@@ -57,36 +56,40 @@
   <h1>Complete Brewing Kits</h1>
 
   <ul class="kits">
-    <li>
-      <img class="kit-image" alt="">
-      <h3 class="kit-name">The Chemex Kit</h3>
-      <div class="kit-price">$396.96</div>
-      <div class="kit-button"><a class="btn btn-hot" href="#">Add to Cart</a></div>
-    </li>
-    <li>
-      <img class="kit-image" alt="">
-      <h3 class="kit-name">The Pour Over Kit</h3>
-      <div class="kit-price">$171.96</div>
-      <div class="kit-button"><a class="btn btn-hot" href="#">Add to Cart</a></div>
-    </li>
-    <li>
-      <img class="kit-image" alt="">
-      <h3 class="kit-name">The Camper’s Kit</h3>
-      <div class="kit-price">$272.95</div>
-      <div class="kit-button"><a class="btn btn-hot" href="#">Add to Cart</a></div>
-    </li>
-    <li>
-      <img class="kit-image" alt="">
-      <h3 class="kit-name">The French Press Kit</h3>
-      <div class="kit-price">$219.94</div>
-      <div class="kit-button"><a class="btn btn-hot" href="#">Add to Cart</a></div>
-    </li>
-    <li>
-      <img class="kit-image" alt="">
-      <h3 class="kit-name">The Cold Brew Kit</h3>
-      <div class="kit-price">$133.96</div>
-      <div class="kit-button"><a class="btn btn-hot" href="#">Add to Cart</a></div>
-    </li>
+  <% cache(cache_key_for_taxon_children('kit')) do %>
+    <%- Spree::Taxon
+        .where(permalink: 'kit')
+        .first
+        .children.each do |kit| -%>
+      <li>
+        <%= link_to seo_url(kit), class: "hot-link" do %>
+          <% if kit.group_file_name %>
+            <%= image_tag kit.group.url, class: "kit-image", alt: "" %>
+          <% end %>
+          <h3 class="kit-name"><%= kit.name %></h3>
+        <% end %>
+        <%- # Calculate kit prices
+        taxon_total = kit.products.inject(0.0) do |sum, product| 
+          product.price_in(current_currency).price + sum
+        end
+        taxon_price = Spree::Price.new(currency: current_currency)
+        taxon_price.price = taxon_total
+        -%>
+        <div class="kit-price"><%= taxon_price.display_price.to_html %></div>
+
+        <%= form_for :order, url: multi_populate_orders_path do |f| %>
+          <%- kit.products.each_with_index do |product, i| -%>
+            <%= hidden_field_tag "line_items[#{i}][variant_id]", product.master.id %>
+            <%= hidden_field_tag "line_items[#{i}][quantity]", 1 %>
+          <%- end -%>
+          <div class="kit-button"><%= button_tag type: :submit, class: "btn btn-hot" do %>
+            Add to Cart
+          <% end %></div>
+        <% end %>
+      </li>
+
+    <%- end -%>
+  <% end %>
   </ul>
 
 </section>
