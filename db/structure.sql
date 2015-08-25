@@ -33,6 +33,19 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 SET search_path = public, pg_catalog;
 
 --
+-- Name: get_xmlbinary(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION get_xmlbinary() RETURNS character varying
+    LANGUAGE plpgsql
+    AS $$
+  BEGIN
+    RETURN 'heroku-connect'; 
+  END;
+$$;
+
+
+--
 -- Name: sfdc_spree_sync_product_proc(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -4881,7 +4894,7 @@ CREATE UNIQUE INDEX index_contact_on_spree_email__c ON contact USING btree (spre
 -- Name: sfdc_spree_sync_product_trigger; Type: TRIGGER; Schema: salesforce; Owner: -
 --
 
-CREATE TRIGGER sfdc_spree_sync_product_trigger AFTER UPDATE OF name ON product2 FOR EACH ROW EXECUTE PROCEDURE public.sfdc_spree_sync_product_proc();
+CREATE TRIGGER sfdc_spree_sync_product_trigger AFTER UPDATE OF name ON product2 FOR EACH ROW WHEN (((public.get_xmlbinary())::text <> 'base64'::text)) EXECUTE PROCEDURE public.sfdc_spree_sync_product_proc();
 
 
 --
