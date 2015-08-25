@@ -19,10 +19,9 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6/html5shiv.min.js"></script>
     <![endif]-->
 
-    <link href="reset.css" rel="stylesheet">
     <!-- Should be same font set as in app/views/white_label/shared/_head.html.erb -->
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600" type="text/css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
+    <%= stylesheet_link_tag 'fix_home/main', media: 'all' %>
 
     <%= yield :head %>
   </head>
