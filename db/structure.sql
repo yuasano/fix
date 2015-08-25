@@ -32,6 +32,23 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: sfdc_spree_sync_product_proc(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION sfdc_spree_sync_product_proc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+  BEGIN
+    RAISE NOTICE 'syncing Spree product #%', NEW.spree_id__c;
+    UPDATE spree_products
+      SET name = NEW.name
+      WHERE id = NEW.spree_id__c::integer;
+    RETURN NEW;
+  END;
+$$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -4861,6 +4878,13 @@ CREATE UNIQUE INDEX index_contact_on_spree_email__c ON contact USING btree (spre
 
 
 --
+-- Name: sfdc_spree_sync_product_trigger; Type: TRIGGER; Schema: salesforce; Owner: -
+--
+
+CREATE TRIGGER sfdc_spree_sync_product_trigger AFTER UPDATE OF name ON product2 FOR EACH ROW EXECUTE PROCEDURE public.sfdc_spree_sync_product_proc();
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -5327,4 +5351,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150708214736');
 INSERT INTO schema_migrations (version) VALUES ('20150708224309');
 
 INSERT INTO schema_migrations (version) VALUES ('20150723205155');
+
+INSERT INTO schema_migrations (version) VALUES ('20150825220524');
 
