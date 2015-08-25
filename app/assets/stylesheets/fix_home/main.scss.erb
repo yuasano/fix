@@ -1,10 +1,11 @@
-/* Custom FIX home page; keep synchronized with heroku/quick-fix/public/main.css
+/* Custom FIX home page; keep synchronized with heroku/quick-fix/public/main.css */
 
- *= require fix_home/reset
- *= require_self
- */
+@import "fix_home/reset";
+@import "_bootstrap-sprockets";
+@import "bootstrap/_variables";
+@import "bootstrap/_glyphicons";
 
- body {
+body {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
   box-sizing: border-box;
@@ -143,6 +144,17 @@ header .logo-text {
   text-align: right;
 }
 
+.hot-link,
+#link-to-cart > a {
+  color: #ff3300;
+  text-decoration: none;
+}
+#link-to-cart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 .textured-section {
   background-color: rgb(161,109,59);
   background-image: url(<%= asset_path 'fix_home/wood-grain.jpg' %>);
@@ -166,10 +178,6 @@ input, button, select, textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
-}
-.hot-link {
-  color: #ff3300;
-  text-decoration: none;
 }
 .btn {
   display: inline-block;
