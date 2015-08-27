@@ -5,14 +5,14 @@ CREATE FUNCTION sfdc_spree_sync_product_proc() RETURNS trigger AS $$
   BEGIN
     RAISE NOTICE 'syncing Spree product #%', NEW.spree_id__c;
     UPDATE spree_products
-      SET name = NEW.name
+      SET name = NEW.name, description = NEW.description
       WHERE id = NEW.spree_id__c::integer;
     RETURN NEW;
   END;
 $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER sfdc_spree_sync_product_trigger
-  AFTER UPDATE OF name ON salesforce.product2
+  AFTER UPDATE OF name, description ON salesforce.product2
   FOR EACH ROW
   WHEN (get_xmlbinary()::text != 'base64'::text)
   EXECUTE PROCEDURE sfdc_spree_sync_product_proc();
