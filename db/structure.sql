@@ -32,6 +32,36 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: get_xmlbinary(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION get_xmlbinary() RETURNS character varying
+    LANGUAGE plpgsql
+    AS $$
+  BEGIN
+    RETURN 'heroku-connect'; 
+  END;
+$$;
+
+
+--
+-- Name: sfdc_spree_sync_product_proc(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION sfdc_spree_sync_product_proc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+  BEGIN
+    RAISE NOTICE 'syncing Spree product #%', NEW.spree_id__c;
+    UPDATE spree_products
+      SET name = NEW.name, description = NEW.description
+      WHERE id = NEW.spree_id__c::integer;
+    RETURN NEW;
+  END;
+$$;
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -2641,7 +2671,8 @@ CREATE TABLE product2 (
     id integer NOT NULL,
     productcode character varying(255),
     name character varying(255),
-    spree_id__c character varying(14)
+    spree_id__c character varying(14),
+    description character varying(4000)
 );
 
 
@@ -4861,6 +4892,13 @@ CREATE UNIQUE INDEX index_contact_on_spree_email__c ON contact USING btree (spre
 
 
 --
+-- Name: sfdc_spree_sync_product_trigger; Type: TRIGGER; Schema: salesforce; Owner: -
+--
+
+CREATE TRIGGER sfdc_spree_sync_product_trigger AFTER UPDATE OF name, description ON product2 FOR EACH ROW WHEN (((public.get_xmlbinary())::text <> 'base64'::text)) EXECUTE PROCEDURE public.sfdc_spree_sync_product_proc();
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -5327,4 +5365,10 @@ INSERT INTO schema_migrations (version) VALUES ('20150708214736');
 INSERT INTO schema_migrations (version) VALUES ('20150708224309');
 
 INSERT INTO schema_migrations (version) VALUES ('20150723205155');
+
+INSERT INTO schema_migrations (version) VALUES ('20150825231328');
+
+INSERT INTO schema_migrations (version) VALUES ('20150825231337');
+
+INSERT INTO schema_migrations (version) VALUES ('20150825231354');
 

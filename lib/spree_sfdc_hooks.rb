@@ -75,7 +75,8 @@ Spree::Product.class_eval do
   heroku_connect("salesforce.product2",
     spree_id__c: :id,
     productcode: :slug,
-    name: :name)
+    name: :name,
+    description: :description)
 
   def create_sfdc_pricebook_entry
     HerokuConnect.sync("salesforce.pricebookentry", {
