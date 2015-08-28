@@ -18,10 +18,12 @@
       "value": "fix-coffee"
     },
     "AWS_ACCESS_KEY_ID": {
-      "description": "Amazon Web Services key ID with write permissions to the S3 bucket. Required only if you plan to add/edit products & kits in Spree"
+      "description": "Amazon Web Services key ID with write permissions to the S3 bucket. Required only if you plan to add/edit products & kits in Spree",
+      "required": false
     },
     "AWS_SECRET_ACCESS_KEY": {
-      "description": "Secret for the given Amazon Web Services key ID."
+      "description": "Secret for the given Amazon Web Services key ID.",
+      "required": false
     },
     "AWS_REGION": {
       "description": "Amazon Web Services region. Only change if the app is intentionally deployed to another region.",
@@ -29,7 +31,8 @@
     },
     "FIX_DEMO": {
       "description": "Leave this blank if you want to deploy an empty storefront without the  sample products or custom FIX home screen.",
-      "value": "enabled"
+      "value": "enabled",
+      "required": false
     },
     "DEPLOYMENT": {
       "description": "Indicates the runtime location of the app; used to regulate behaviors which are different when running at Heroku",
@@ -40,11 +43,13 @@
       "value": "en_US.UTF-8"
     },
     "PRICEBOOK_ID": {
-      "description": "The Salesforce org's Pricebook used for synchronization of Products"
+      "description": "The Salesforce org's Pricebook used for synchronization of Products",
+      "required": false
     },
     "RAILS_SERVE_STATIC_FILES": {
       "description": "Rails on Heroku should server its own static content; unset this var if a web server is in front of Spree",
-      "value": "enabled"
+      "value": "enabled",
+      "required": false
     },
     "SECRET_KEY_BASE": {
       "description": "A unique secret used by Rails to generate and verify signed cookies (among other things)",
