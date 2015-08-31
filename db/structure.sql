@@ -2607,7 +2607,8 @@ CREATE TABLE pricebook2 (
     id integer NOT NULL,
     sfid character varying(18),
     name character varying(255),
-    isactive boolean
+    isactive boolean,
+    isstandard boolean
 );
 
 
@@ -5365,6 +5366,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150708214736');
 INSERT INTO schema_migrations (version) VALUES ('20150708224309');
 
 INSERT INTO schema_migrations (version) VALUES ('20150723205155');
+
+INSERT INTO schema_migrations (version) VALUES ('20150824221311');
 
 INSERT INTO schema_migrations (version) VALUES ('20150825231328');
 

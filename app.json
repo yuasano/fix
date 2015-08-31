@@ -42,10 +42,6 @@
       "description": "Default locale & character encoding to use in app runtime",
       "value": "en_US.UTF-8"
     },
-    "PRICEBOOK_ID": {
-      "description": "The Salesforce org's Pricebook used for synchronization of Products",
-      "required": false
-    },
     "RAILS_SERVE_STATIC_FILES": {
       "description": "Rails on Heroku should server its own static content; unset this var if a web server is in front of Spree",
       "value": "enabled",

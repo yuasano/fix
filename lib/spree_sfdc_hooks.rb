@@ -80,7 +80,7 @@ Spree::Product.class_eval do
 
   def create_sfdc_pricebook_entry
     HerokuConnect.sync("salesforce.pricebookentry", {
-      pricebook2id: ENV["PRICEBOOK_ID"],
+      pricebook2id: SfdcPricebook.standard_pricebook_id,
       name: self.name,
       product2__spree_id__c: self.id,
       unitprice: self.price_in(Spree::Config[:currency]).amount.to_s

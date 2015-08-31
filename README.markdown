@@ -54,7 +54,6 @@ These are the hot-zones of customization used to create FIX:
   Then modify contents of `.env`
     * `AWS_*` values should map to write access on an S3 bucket that allows public/anonymous read
     * `DEPLOYMENT` should not equal `production` except when running on Heroku
-    * `PRICEBOOK_ID` is the Salesforce ID of the Price Book created in the Salesforce setup (below)
     * `RAILS_SERVE_STATIC_FILES` should be `enabled` for local dev & Heroku, unless you configured a web server to proxy to the Rails app
     * `SECRET_KEY_BASE` must equal a secure random string; once generated, it should not change; generate with
 
@@ -100,11 +99,6 @@ These are the hot-zones of customization used to create FIX:
   - Go to Setup > Create > Objects > New Custom Object
   - Call it "LineItem"
   - Add custom fields "quantity" (Number), price_unit" (Currency 10,2), "price_total" (Currency 10,2), "spree_id" (Text, External ID), "order" (Lookup relationship), product (Lookup relationship)
-- And finally, Spree needs to know what Price Book you want to use for this integration in SFDC:
-  - In the tabs at the top, click the `+` sign
-  - Pick "Price Books"
-  - Click the "Standard Price Book"
-  - Note the ID in the URL (eg: na41.salesforce.com/`01sABCD`). Set that as the `PRICEBOOK_ID` in the environment (locally **.env** and for deployment `heroku config:set`)
 
 And finally, to create the "Cancel Order" button in Salesforce:
 
