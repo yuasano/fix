@@ -46,6 +46,33 @@ $$;
 
 
 --
+-- Name: sfdc_spree_sync_address_proc(); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION sfdc_spree_sync_address_proc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+  BEGIN
+    RAISE NOTICE 'syncing Spree contact %', NEW.spree_email__c;
+    UPDATE spree_addresses
+      SET
+        firstname = NEW.firstname,
+        lastname = NEW.lastname,
+        phone = NEW.phone,
+        address1 = NEW.mailingstreet,
+        city = NEW.mailingcity,
+        state_id = (SELECT id FROM spree_states WHERE name = NEW.mailingstate),
+        country_id = (SELECT id FROM spree_countries WHERE name = NEW.mailingcountry),
+        zipcode = NEW.mailingpostalcode
+      WHERE id = (
+        SELECT ship_address_id FROM spree_users WHERE email = NEW.spree_email__c
+      );
+    RETURN NEW;
+  END;
+$$;
+
+
+--
 -- Name: sfdc_spree_sync_product_proc(); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -4893,6 +4920,13 @@ CREATE UNIQUE INDEX index_contact_on_spree_email__c ON contact USING btree (spre
 
 
 --
+-- Name: sfdc_spree_sync_address_trigger; Type: TRIGGER; Schema: salesforce; Owner: -
+--
+
+CREATE TRIGGER sfdc_spree_sync_address_trigger AFTER UPDATE OF firstname, lastname, phone, mailingstreet, mailingcity, mailingstate, mailingcountry, mailingpostalcode ON contact FOR EACH ROW WHEN (((public.get_xmlbinary())::text <> 'base64'::text)) EXECUTE PROCEDURE public.sfdc_spree_sync_address_proc();
+
+
+--
 -- Name: sfdc_spree_sync_product_trigger; Type: TRIGGER; Schema: salesforce; Owner: -
 --
 
@@ -5374,4 +5408,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150825231328');
 INSERT INTO schema_migrations (version) VALUES ('20150825231337');
 
 INSERT INTO schema_migrations (version) VALUES ('20150825231354');
+
+INSERT INTO schema_migrations (version) VALUES ('20150831211918');
 
