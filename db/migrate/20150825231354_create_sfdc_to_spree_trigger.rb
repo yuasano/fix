@@ -1,6 +1,7 @@
 class CreateSfdcToSpreeTrigger < ActiveRecord::Migration
   def up
     execute <<EOF
+
 CREATE FUNCTION sfdc_spree_sync_product_proc() RETURNS trigger AS $$
   BEGIN
     RAISE NOTICE 'syncing Spree product #%', NEW.spree_id__c;
