@@ -1,0 +1,4 @@
+#/usr/bin/env bash
+set -e
+AUTO_ACCEPT=1 bundle exec rake railties:install:migrations db:migrate db:seed fix:import:db
+while true; do sleep 10; done
