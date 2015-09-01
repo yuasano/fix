@@ -1,0 +1,19 @@
+<div class="taxon taxon-listing" data-hook="taxon">
+  <% if taxon.group_file_name %>
+    <%= link_to seo_url(taxon), :class => 'hero-image-link' do %>
+      <div class="row">
+        <div class="hero-image" style="background-image: url(<%= taxon.style.url %>)">
+          <div class="col-xs-5 col-xs-offset-7 col-sm-3 col-sm-offset-8">
+            <div class="group-link">
+              <%= image_tag taxon.group.url %>
+              <h1><%= taxon.name %></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <h1 class="taxon-title"><%= link_to taxon.name, seo_url(taxon) %></h1>
+  <% end %>
+</div>
+

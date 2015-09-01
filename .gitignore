@@ -18,6 +18,6 @@
 !/log/.keep
 /tmp
 
-# Ignore build artifacts.
-/app/compiled_views
-/public/assets
+# Ignore build artifacts. space-demo requires assets be checked-in
+# /app/compiled_views
+# /public/assets

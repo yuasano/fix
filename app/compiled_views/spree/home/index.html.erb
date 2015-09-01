@@ -1,0 +1,17 @@
+<% content_for :sidebar do %>
+  
+<% end %>
+
+<div class="kit-listing" data-hook="homepage_products">
+  <% cache(cache_key_for_taxon_children('kit')) do %>
+    <%- Spree::Taxon
+        .where(:permalink => 'kit')
+        .first
+        .children.each do |kit| -%>
+      <div class="stacked-block">
+        <%= render partial: 'spree/taxons/taxon', locals: { taxon: kit } %>
+      </div>
+    <%- end -%>
+  <% end %>
+</div>
+
