@@ -20,22 +20,16 @@ require_dependency "#{Rails.root}/lib/spree_taxon_images"
 # In order to initialize a setting do:
 # config.setting_name = 'new value'
 
-# Avoid this block during assets:precompile, so that a database connection is not required.
-# (A hack to support deployment from a build environment that cannot access the production database.)
-if $IS_ASSETS_PRECOMPILE
+Spree.config do |config|
+  # See Gem spree_core-3.0.1/app/models/spree/app_configuration.rb for all predefined preferences.
+  config.logo = "logo/fix-logotype.png"
 
-  Spree.config do |config|
-    # See Gem spree_core-3.0.1/app/models/spree/app_configuration.rb for all predefined preferences.
-    config.logo = "logo/fix-logotype.png"
-
-    # defaults for US-based store
-    config.currency = 'USD'
-    if Spree::Country.table_exists?
-      country = Spree::Country.find_by_iso('US')
-      config.default_country_id = country.id if country.present?
-    end
+  # defaults for US-based store
+  config.currency = 'USD'
+  if Spree::Country.table_exists?
+    country = Spree::Country.find_by_iso('US')
+    config.default_country_id = country.id if country.present?
   end
-
 end
 
 # Support for Heroku S3 Add-on
