@@ -1,5 +1,3 @@
-puts "ENV => #{ENV.inspect}"
-
 Spree.user_class = "Spree::User"
 
 require_dependency "#{Rails.root}/lib/heroku_connect"
