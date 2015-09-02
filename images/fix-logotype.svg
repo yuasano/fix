@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="-71 96 122 76" style="enable-background:new -71 96 122 76;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<g id="Layer_1_1_">
+	<title>FIX</title>
+	<g id="FIX" transform="translate(2.000000, 2.000000)">
+		<g id="F">
+			<path id="F1" class="st0" d="M-53,123.1h-9c-5,0-9,4-9,9v36"/>
+			<path id="F2" class="st0" d="M-71,114.1v-9c0-5,4-9,9-9h27"/>
+		</g>
+		<g id="I" transform="translate(41.000000, 0.000000)">
+			<path id="I1" class="st0" d="M-62,123.1v36c0,5-4,9-9,9"/>
+			<path id="I2" class="st0" d="M-62,114.1v-9c0-5,4-9,9-9"/>
+		</g>
+		<path id="X" class="st0" d="M46.9,168.1l-14-28c-2.5-5.1-2.5-11,0-16.1l14-28 M4,168.1l14-28c2.5-5.1,2.5-11,0-16.1L4,96.1
+			 M33.4,123.1h4.5c5,0,9,4,9,9c0,5-4,9-9,9h-4.5 M17.5,141.1h-2.1"/>
+	</g>
+</g>
+</svg>
