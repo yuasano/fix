@@ -22,6 +22,13 @@ namespace :fix do
     Rake::Task['fix:import:s3'].invoke
   end
 
+  desc "setups the database to sync data from SFDC back to Spree"
+  task :connect_setup => :environment do
+    ActiveRecord::Base.connection.execute(
+      File.read("#{Rails.root}/db/connect_setup.sql"))
+    puts "Updated Connect triggers/functions"
+  end
+
   namespace :import do
 
     desc "loads products & kits into the database; uses the configured ActiveRecord database"
