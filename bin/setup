@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 require 'pathname'
 
+$stdout.sync = true
+
 puts "\n== Starting bin/setup =="
 
 # path to your application root.
