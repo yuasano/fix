@@ -6,12 +6,16 @@ Reference Architecture for eCommerce on Heroku – [More Information](https://he
 
 ## Default admin login
 
+* Admin URL is the Heroku app URL + `/admin` 
 * `spree@example.com` / `spree123`
 * *Change this email & password after your first login*
 
 ## Deploying with Salesforce integration
 
-When using the **Deploy to Heroku** button, Salesforce integration is not activated. Either follow the [Salesforce setup](#salesforce-setup) below or use the FIX Installer (work-in-progress) to provision an instance of FIX integrated with a new Salesforce Trial Org.
+When using the **Deploy to Heroku** button, a Salesforce org is not connected or configured. Either:
+
+* follow the [Salesforce setup](#salesforce-setup) below
+* *WORK IN PROGRESS* use the FIX Installer to deploy the app connected with a new Salesforce Trial Org.
 
 ## Deploying the coffee demo vs an empty storefront
 
@@ -30,7 +34,9 @@ If you choose to deploy an empty storefront, you must [configure an Amazon S3 bu
 
 ## Customizations
 
-Spree is built on Ruby on Rails, so customizing it is an exercise in altering and extending a large Rails app.
+The FIX storefront app is built on [Spree Commerce](https://spreecommerce.com). Spree is built on [Ruby on Rails](http://rubyonrails.org).
+
+Customizing Spree is an exercise in altering and extending a large Rails app.
 
 These are the hot-zones of customization used to create FIX:
 
