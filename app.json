@@ -1,13 +1,14 @@
 {
-  "name": "FIX",
-  "description": "Image-focused, white-label Spree Commerce site integrated with Salesforce",
+  "name": "FIX eCommerce storefront",
+  "description": "Reference architecture, Heroku + Salesforce",
   "keywords": [
     "ecommerce",
     "ruby",
     "salesforce"
   ],
-  "website": "https://github.com/heroku/fix",
+  "website": "https://heroku.github.io/fix",
   "repository": "https://github.com/heroku/fix.git",
+  "logo": "https://heroku.github.io/fix/images/fix-logotype.svg",
   "success_url": "/admin",
   "scripts": {
     "postdeploy": "bin/setup"
