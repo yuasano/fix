@@ -1,7 +1,32 @@
-Salesforce eCommerce w/ Spree
-=============================
+FIX
+===
+Reference Architecture for eCommerce on Heroku – [More Information](https://heroku.github.io/fix)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/heroku/fix)
+
+## Default admin login
+
+* `spree@example.com` / `spree123`
+* *Change this email & password after your first login*
+
+## Deploying with Salesforce integration
+
+When using the **Deploy to Heroku** button, Salesforce integration is not activated. Either follow the [Salesforce setup](#salesforce-setup) below or use the FIX Installer (work-in-progress) to provision an instance of FIX integrated with a new Salesforce Trial Org.
+
+## Deploying the coffee demo vs an empty storefront
+
+This app may be deployed as an empty, white-label, eCommerce storefront, or loaded-up with demonstration coffee products & kits. When using the **Deploy to Heroku** button, you can skip the demo data by clearing the `FIX_DEMO` Config Variable.
+
+If you choose to deploy an empty storefront, you must [configure an Amazon S3 bucket](#amazon-s3-setup) to host product & kit images. The default demostration data is served from a pre-configured read-only S3 bucket.
+
+## Caveats
+
+* the default FIX demonstration uses read-only product & kit images; if you want to edit the demonstration products, then [configure an Amazon S3 bucket](#amazon-s3-setup) and then import the images to your new bucket `rake fix:import`
+* the default FIX integration with Salesforce requires maintaining configuration between the app & Salesforce; changing any of the following will cause breakage unless the complementary configs are updated:
+ * renaming Heroku app
+ * changing Spree API key
+ * expiring Salesforce credentials/tokens
+ * altering Salesforce objects/schema
 
 ## Customizations
 
@@ -26,7 +51,7 @@ These are the hot-zones of customization used to create FIX:
   * **style** "lifestyle" shot, not neccessarily square
   * **icon** (currently unused)
 
-## Development
+## Developer How-to
 
 ### Requires
 
