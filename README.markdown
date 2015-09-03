@@ -31,23 +31,23 @@ If you choose to deploy an empty storefront, you must [configure an Amazon S3 bu
  * changing Spree API key
  * expiring Salesforce credentials/tokens
  * altering Salesforce objects/schema
+* data synchronization & permissions are implemented as examples; real-world business workflows should be audited to ensure correct data flow
 
 ## Customizations
 
 The FIX storefront app is built on [Spree Commerce](https://spreecommerce.com). Spree is built on [Ruby on Rails](http://rubyonrails.org).
 
-Customizing Spree is an exercise in altering and extending a large Rails app.
-
-These are the hot-zones of customization used to create FIX:
+Customizing Spree is an exercise in altering and extending a large Rails app.These are the hot-zones of customization used to create FIX:
 
 ### Customized Code
 
-* [Spree app config set in an initializer](config/initializers/spree.rb) (see [Configuration Options](https://guides.spreecommerce.com/developer/preferences.html#spree-configuration-options))
-* [SCSS/Bootstrap style overrides](app/assets/stylesheets/spree/frontend/frontend_bootstrap.css.scss)
+* [Spree app config](config/initializers/spree.rb) (see [Configuration Options](https://guides.spreecommerce.com/developer/preferences.html#spree-configuration-options))
 * Views:
+  * [SCSS/Bootstrap style overrides](app/assets/stylesheets/spree/frontend/frontend_bootstrap.css.scss)
   * [Rails Engine view overrides](app/views/spree)
   * [Deface view overrides](app/overrides/white_label) (see [Deface](https://github.com/spree/deface/blob/master/README.markdown))
   * various [partials](app/views/white_label) called from overrides
+* Heroku Connect synchronization [hooks](lib/spree_sfdc_hooks.rb) and [triggers](db/connect_setup.sql)
 
 ### Customized Admin UI
 
@@ -101,8 +101,13 @@ These are the hot-zones of customization used to create FIX:
   ```
   rake fix:import
   ```
+1. (optional) Once Heroku Connect is active & configured, load the Postgres triggers to synchronization Products & Contacts back from Salesforce
 
-## Deployment
+  ```
+  rake fix:connect_setup
+  ```
+
+## Integrations
 
 ### Salesforce setup
 
