@@ -29,6 +29,29 @@ namespace :fix do
     puts "Updated Connect triggers/functions"
   end
 
+  desc "set the email & password of the original seed user in the database; requires EMAIL & PASSWORD env variables"
+  task :update_seed_login => :environment do
+    email     = ENV['EMAIL']
+    password  = ENV['PASSWORD']
+    if email.blank? || password.blank?
+      raise "Requires both EMAIL & PASSWORD"
+    end
+    
+    users = Spree::User.where(email: 'spree@example.com')
+    if users.length < 1
+      puts "Seed user (spree@example.com) not found"
+      return
+    end
+    first_user = users.first
+
+    # Update sequence copied from spree_auth_devise/app/models/spree/user.rb
+    first_user.email = email
+    first_user.login = first_user.email
+    first_user.password = password
+    first_user.password_confirmation = first_user.password
+    first_user.save!
+  end
+
   namespace :import do
 
     desc "loads products & kits into the database; uses the configured ActiveRecord database"
