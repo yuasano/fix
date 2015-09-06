@@ -55,7 +55,7 @@
   },
   "addons": [
     "heroku-postgresql",
-    "herokuconnect",
+    "herokuconnect:demo",
     "mailgun",
     "memcachier"
   ]
