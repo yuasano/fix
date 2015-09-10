@@ -57,6 +57,7 @@
     "heroku-postgresql",
     "herokuconnect:demo",
     "mailgun",
-    "memcachier"
+    "memcachier",
+    "papertrail"
   ]
 }
