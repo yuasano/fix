@@ -69,7 +69,9 @@ Rails.application.configure do
       :failover => true,
       :socket_timeout => 1.5,
       :socket_failure_delay => 0.2,
-      :namespace => release_commit }
+      :namespace => release_commit,
+      :pool_size => Integer(ENV['MAX_THREADS'] || 5)
+    }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
