@@ -18,6 +18,7 @@ class OrderSfdcTest < ActiveSupport::TestCase
       number: "001",
       confirmation_delivered: true, # skip email
       line_items: [Spree::LineItem.new(quantity: 2, variant: @variant)])
+    def @order.send_cancel_email; end # stub
   end
 
   def move_order_to_complete
@@ -34,6 +35,7 @@ class OrderSfdcTest < ActiveSupport::TestCase
     assert_equal "001", order["name"]
     assert_equal @user.email, order["contact__r__spree_email__c"]
     assert_equal @order.id.to_s, order["spree_id__c"]
+    assert_equal "complete", order["state__c"]
   end
 
   test "syncs line items" do
@@ -73,5 +75,12 @@ class OrderSfdcTest < ActiveSupport::TestCase
     assert_equal "California", sf_address["mailingstate"]
     assert_equal "USA", sf_address["mailingcountry"]
     assert_equal "94103", sf_address["mailingpostalcode"]
+  end
+
+  test "updates state with Salesforce when canceled" do
+    move_order_to_complete
+    @order.cancel!
+    sfdc_order = ActiveRecord::Base.connection.select_all("SELECT * FROM salesforce.order__c").to_hash.first
+    assert_equal "canceled", sfdc_order["state__c"]
   end
 end
