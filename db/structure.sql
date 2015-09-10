@@ -2561,7 +2561,8 @@ CREATE TABLE order__c (
     total__c double precision,
     contact__c character varying(18),
     spree_id__c character varying(14),
-    contact__r__spree_email__c character varying(80)
+    contact__r__spree_email__c character varying(80),
+    state__c character varying(40)
 );
 
 
@@ -5364,6 +5365,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150824221311');
 INSERT INTO schema_migrations (version) VALUES ('20150825231328');
 
 INSERT INTO schema_migrations (version) VALUES ('20150825231337');
+
+INSERT INTO schema_migrations (version) VALUES ('20150909232103');
 
 INSERT INTO schema_migrations (version) VALUES ('20150910185306');
 
