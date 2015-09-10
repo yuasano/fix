@@ -45,50 +45,6 @@ CREATE FUNCTION get_xmlbinary() RETURNS character varying
 $$;
 
 
---
--- Name: sfdc_spree_sync_address_proc(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION sfdc_spree_sync_address_proc() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-  BEGIN
-    RAISE NOTICE 'syncing Spree contact %', NEW.spree_email__c;
-    UPDATE spree_addresses
-      SET
-        firstname = NEW.firstname,
-        lastname = NEW.lastname,
-        phone = NEW.phone,
-        address1 = NEW.mailingstreet,
-        city = NEW.mailingcity,
-        state_id = (SELECT id FROM spree_states WHERE name = NEW.mailingstate),
-        country_id = (SELECT id FROM spree_countries WHERE name = NEW.mailingcountry),
-        zipcode = NEW.mailingpostalcode
-      WHERE id = (
-        SELECT ship_address_id FROM spree_users WHERE email = NEW.spree_email__c
-      );
-    RETURN NEW;
-  END;
-$$;
-
-
---
--- Name: sfdc_spree_sync_product_proc(); Type: FUNCTION; Schema: public; Owner: -
---
-
-CREATE FUNCTION sfdc_spree_sync_product_proc() RETURNS trigger
-    LANGUAGE plpgsql
-    AS $$
-  BEGIN
-    RAISE NOTICE 'syncing Spree product #%', NEW.spree_id__c;
-    UPDATE spree_products
-      SET name = NEW.name, description = NEW.description
-      WHERE id = NEW.spree_id__c::integer;
-    RETURN NEW;
-  END;
-$$;
-
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -103,7 +59,8 @@ CREATE TABLE friendly_id_slugs (
     sluggable_id integer NOT NULL,
     sluggable_type character varying(50),
     scope character varying,
-    created_at timestamp without time zone
+    created_at timestamp without time zone,
+    deleted_at timestamp without time zone
 );
 
 
@@ -194,7 +151,7 @@ CREATE TABLE spree_adjustments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     state character varying,
-    order_id integer,
+    order_id integer NOT NULL,
     included boolean DEFAULT false
 );
 
@@ -270,7 +227,8 @@ CREATE TABLE spree_calculators (
     calculable_type character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    preferences text
+    preferences text,
+    deleted_at timestamp without time zone
 );
 
 
@@ -494,7 +452,7 @@ CREATE TABLE spree_line_items (
     additional_tax_total numeric(10,2) DEFAULT 0.0,
     promo_total numeric(10,2) DEFAULT 0.0,
     included_tax_total numeric(10,2) DEFAULT 0.0 NOT NULL,
-    pre_tax_amount numeric(8,2) DEFAULT 0
+    pre_tax_amount numeric(12,4) DEFAULT 0.0 NOT NULL
 );
 
 
@@ -1631,7 +1589,7 @@ CREATE TABLE spree_shipments (
     additional_tax_total numeric(10,2) DEFAULT 0.0,
     promo_total numeric(10,2) DEFAULT 0.0,
     included_tax_total numeric(10,2) DEFAULT 0.0 NOT NULL,
-    pre_tax_amount numeric(8,2) DEFAULT 0
+    pre_tax_amount numeric(12,4) DEFAULT 0.0 NOT NULL
 );
 
 
@@ -3826,6 +3784,13 @@ CREATE INDEX index_assets_on_viewable_type_and_type ON spree_assets USING btree 
 
 
 --
+-- Name: index_friendly_id_slugs_on_deleted_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_friendly_id_slugs_on_deleted_at ON friendly_id_slugs USING btree (deleted_at);
+
+
+--
 -- Name: index_friendly_id_slugs_on_slug_and_sluggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -4005,6 +3970,13 @@ CREATE INDEX index_spree_adjustments_on_source_id_and_source_type ON spree_adjus
 --
 
 CREATE INDEX index_spree_calculators_on_calculable_id_and_calculable_type ON spree_calculators USING btree (calculable_id, calculable_type);
+
+
+--
+-- Name: index_spree_calculators_on_deleted_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_spree_calculators_on_deleted_at ON spree_calculators USING btree (deleted_at);
 
 
 --
@@ -4920,20 +4892,6 @@ CREATE UNIQUE INDEX index_contact_on_spree_email__c ON contact USING btree (spre
 
 
 --
--- Name: sfdc_spree_sync_address_trigger; Type: TRIGGER; Schema: salesforce; Owner: -
---
-
-CREATE TRIGGER sfdc_spree_sync_address_trigger AFTER UPDATE OF firstname, lastname, phone, mailingstreet, mailingcity, mailingstate, mailingcountry, mailingpostalcode ON contact FOR EACH ROW WHEN (((public.get_xmlbinary())::text <> 'base64'::text)) EXECUTE PROCEDURE public.sfdc_spree_sync_address_proc();
-
-
---
--- Name: sfdc_spree_sync_product_trigger; Type: TRIGGER; Schema: salesforce; Owner: -
---
-
-CREATE TRIGGER sfdc_spree_sync_product_trigger AFTER UPDATE OF name, description ON product2 FOR EACH ROW WHEN (((public.get_xmlbinary())::text <> 'base64'::text)) EXECUTE PROCEDURE public.sfdc_spree_sync_product_proc();
-
-
---
 -- PostgreSQL database dump complete
 --
 
@@ -5407,7 +5365,11 @@ INSERT INTO schema_migrations (version) VALUES ('20150825231328');
 
 INSERT INTO schema_migrations (version) VALUES ('20150825231337');
 
-INSERT INTO schema_migrations (version) VALUES ('20150825231354');
+INSERT INTO schema_migrations (version) VALUES ('20150910185306');
 
-INSERT INTO schema_migrations (version) VALUES ('20150831211918');
+INSERT INTO schema_migrations (version) VALUES ('20150910185307');
+
+INSERT INTO schema_migrations (version) VALUES ('20150910185308');
+
+INSERT INTO schema_migrations (version) VALUES ('20150910185309');
 
