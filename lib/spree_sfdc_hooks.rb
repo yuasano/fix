@@ -1,6 +1,7 @@
 Spree::Order.class_eval do
   state_machine do
     after_transition to: :complete, do: :write_sfdc
+    after_transition to: :canceled, do: :update_sfdc_state
   end
 
   def write_sfdc
@@ -11,6 +12,7 @@ Spree::Order.class_eval do
         spree_id__c: self.id,
         name: self.number,
         total__c: self.total,
+        state__c: self.state,
         contact__r__spree_email__c: self.email
       })
 
@@ -40,6 +42,12 @@ Spree::Order.class_eval do
         HerokuConnect.sync("salesforce.contact", update, cond)
       end
     end
+  end
+
+  def update_sfdc_state
+    HerokuConnect.sync("salesforce.order__c",
+      { state__c: self.state },
+      { spree_id__c: self.id })
   end
 end
 
