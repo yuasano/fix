@@ -25,29 +25,19 @@ permalink: /architecture/
     </div>
     <div class="col-sm-6 col-lg-4 stacked-block">
       <h2>Salesforce synchronization</h2>
-      <p><a href="https://www.heroku.com/connect">Heroku Connect</a> synchronizes storefront data from Heroku Postgres to Salesforce:</p>
-      <ul>
-        <li>As Spree Products are updated
-          <ul>
-            <li><code>Product2</code></li>
-            <li><code>Pricebook2</code></li>
-            <li><code>PricebookEntry</code></li>
-          </ul>
-        </li>
-        <li>As Spree Users are updated
-          <ul>
-            <li><code>Contact</code></li>
-          </ul>
-        </li>
-        <li>As Spree Orders are completed
-          <ul>
-            <li><code>Order__c</code></li>
-            <li><code>LineItem__c</code></li>
-          </ul>
-        </li>
-      </ul>
+      <p><a href="https://www.heroku.com/connect">Heroku Connect</a> synchronizes storefront data from Heroku Postgres to Salesforce.</p>
+      <p>See: <a href="#data-flow-diagram">FIX data flow diagram</a>, below.</p>
       <p>Easily configured with a point and click UI, developers can further extend the integration to any standard or custom Salesforce object.</p>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <img id="data-flow-diagram" src="{{ '/images/fix-data-flow.png' | prepend: site.baseurl }}" width="100%" alt="Data Flow Diagram">
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-sm-6 col-lg-4 stacked-block">
       <h2>Employee-facing, Salesforce workflow</h2>
       <p>Records in Salesforce may be supplemented with <a href="https://help.salesforce.com/apex/HTViewHelpDoc?id=customize_enterprise.htm&amp;language=en_US">Custom Buttons</a> that invoke API calls to the eCommerce server.</p>
