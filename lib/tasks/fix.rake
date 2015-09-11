@@ -136,7 +136,6 @@ namespace :fix do
           -t spree_shipping_method_categories \
           -t spree_shipping_methods \
           -t spree_shipping_methods_zones \
-          -t spree_shipping_rates \
           -t spree_stock_items \
           -t spree_tax_categories \
           -t spree_tax_rates \
