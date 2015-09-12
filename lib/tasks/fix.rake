@@ -114,7 +114,6 @@ namespace :fix do
           -t friendly_id_slugs \
           -t spree_assets \
           -t spree_calculators \
-          -t spree_inventory_units \
           -t spree_option_types \
           -t spree_option_types_prototypes \
           -t spree_option_values \
