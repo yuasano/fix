@@ -153,7 +153,7 @@ And finally, to create the "Cancel Order" button in Salesforce:
     ```js
     {!REQUIRESCRIPT('//code.jquery.com/jquery-2.0.3.min.js')}
 
-    var spreeUrl = 'https://$APP_NAME.herokuapp.com/api/orders/{!Order__c.spree_id__c}/empty';
+    var spreeUrl = 'https://$APP_NAME.herokuapp.com/api/orders/{!Order__c.spree_id__c}/cancel';
 
     jQuery.ajax({
       url:spreeUrl,
