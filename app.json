@@ -59,5 +59,8 @@
     "mailgun",
     "memcachier",
     "papertrail"
+  ],
+  "formation": [
+    { "process": "web",    "quantity": 1, "size": "standard-1X" }
   ]
 }
