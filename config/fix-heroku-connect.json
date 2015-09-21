@@ -1,0 +1,137 @@
+{
+  "mappings": [
+    {
+      "object_name": "Contact",
+      "config": {
+        "sf_polling_seconds": 120,
+        "fields": {
+          "MailingStreet": {},
+          "FirstName": {},
+          "MailingCity": {},
+          "MailingCountry": {},
+          "Email": {},
+          "LastName": {},
+          "IsDeleted": {},
+          "Phone": {},
+          "MailingPostalCode": {},
+          "Id": {},
+          "SystemModstamp": {},
+          "spree_email__c": {},
+          "MailingState": {}
+        },
+        "sf_notify_enabled": true,
+        "applied_at": "2015-07-09T00:17:03.078Z",
+        "sf_max_daily_api_calls": 30000,
+        "access": "read_write"
+      }
+    },
+    {
+      "object_name": "Product2",
+      "config": {
+        "sf_polling_seconds": 120,
+        "fields": {
+          "IsDeleted": {},
+          "Description": {},
+          "ProductCode": {},
+          "Name": {},
+          "Id": {},
+          "SystemModstamp": {},
+          "spree_id__c": {}
+        },
+        "sf_notify_enabled": false,
+        "applied_at": "2015-08-26T00:00:36.504Z",
+        "sf_max_daily_api_calls": 30000,
+        "access": "read_write"
+      }
+    },
+    {
+      "object_name": "PricebookEntry",
+      "config": {
+        "sf_polling_seconds": 120,
+        "fields": {
+          "IsDeleted": {},
+          "Pricebook2Id": {},
+          "Product2__spree_id__c": {},
+          "Name": {},
+          "Id": {},
+          "SystemModstamp": {},
+          "Product2Id": {},
+          "UnitPrice": {}
+        },
+        "sf_notify_enabled": false,
+        "applied_at": "2015-07-01T23:47:47.906Z",
+        "sf_max_daily_api_calls": 30000,
+        "access": "read_write"
+      }
+    },
+    {
+      "object_name": "Pricebook2",
+      "config": {
+        "sf_polling_seconds": 120,
+        "fields": {
+          "IsActive": {},
+          "IsDeleted": {},
+          "Name": {},
+          "Id": {},
+          "SystemModstamp": {},
+          "IsStandard": {}
+        },
+        "sf_notify_enabled": false,
+        "applied_at": "2015-07-22T18:08:45.171Z",
+        "sf_max_daily_api_calls": 30000,
+        "access": "read_only"
+      }
+    },
+    {
+      "object_name": "LineItem__c",
+      "config": {
+        "sf_polling_seconds": 120,
+        "fields": {
+          "IsDeleted": {},
+          "spree_id__c": {},
+          "product_id__r__spree_id__c": {},
+          "product_id__c": {},
+          "order_id__c": {},
+          "Name": {},
+          "order_id__r__spree_id__c": {},
+          "Id": {},
+          "SystemModstamp": {},
+          "price_unit__c": {},
+          "quantity__c": {},
+          "price_total__c": {}
+        },
+        "sf_notify_enabled": false,
+        "applied_at": "2015-07-13T23:30:10.281Z",
+        "sf_max_daily_api_calls": 30000,
+        "access": "read_write"
+      }
+    },
+    {
+      "object_name": "Order__c",
+      "config": {
+        "sf_polling_seconds": 120,
+        "fields": {
+          "IsDeleted": {},
+          "spree_id__c": {},
+          "total__c": {},
+          "state__c": {},
+          "contact__r__spree_email__c": {},
+          "Name": {},
+          "contact__c": {},
+          "Id": {},
+          "SystemModstamp": {}
+        },
+        "sf_notify_enabled": true,
+        "applied_at": "2015-07-13T23:30:17.074Z",
+        "sf_max_daily_api_calls": 30000,
+        "access": "read_write"
+      }
+    }
+  ],
+  "connection": {
+    "exported_at": "2015-09-04T22:23:43.556539+00:00",
+    "app_name": "sample-spree",
+    "organization_id": "00D37000000I2jpEAC"
+  },
+  "version": 1
+}

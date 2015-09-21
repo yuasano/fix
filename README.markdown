@@ -177,12 +177,15 @@ And finally, to create the "Cancel Order" button in Salesforce:
 
 - Open the Connect dashboard, under org type check "Production"
 - Authorize with your Salesforce Org
-- Create mapping for the objects "Contact", "Product2", "Pricebook2", "PricebookEntry", "Order__c" and "LineItem__c". For now just pick all fields (temporary, we can filter this later)
+- Configure Connect. Either:
+  * Import [the sample JSON config file](config/fix-heroku-connect.json) in the Connect web dashboard: "Settings": "Import/Export Configuration"
+  * Create mapping for the objects "Contact", "Product2", "Pricebook2", "PricebookEntry", "Order__c" and "LineItem__c". For now just pick all fields (temporary, we can filter this later)
 
 ### Heroku app setup
 
 - `heroku config:set` for each of the environment variables
 - `heroku labs:enable runtime-dyno-metadata` (this supports release-scoped cache; see `HerokuDynoMetadata` in [config/environments/production.rb](config/environments/production.rb))
+- Once Heroku Connect is setup: `heroku rake fix:connect_setup` (this loads the Postgres triggers to sync data back from Salesforce)
 
 ### Amazon S3 setup
 
