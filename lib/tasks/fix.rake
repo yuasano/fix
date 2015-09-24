@@ -95,7 +95,7 @@ namespace :fix do
         file_name = path_parts[-1]
         puts "...uploading #{s3_key}"
 
-        obj = aws_s3_bucket.objects[File.join(s3_key, file_name)]
+        obj = aws_s3_bucket.objects[s3_key]
         obj.write(file: path_name)
       end
     end
