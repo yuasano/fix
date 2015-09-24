@@ -90,12 +90,12 @@ namespace :fix do
       source_dir = File.join(SAMPLE_DIR, S3_OUTPUT_DIR)
 
       recurse_fs_files(source_dir) do |path_name|
-        path_parts = /^#{Regexp.escape(source_dir)}(.+)/.match(path_name)[1].split('/')
+        path_parts = /^#{Regexp.escape(source_dir)}(.+)/.match(path_name)[1].split('/').reject(&:empty?)
         s3_key = File.join(aws_s3_path, *path_parts)
         file_name = path_parts[-1]
         puts "...uploading #{s3_key}"
 
-        obj = aws_s3_bucket.objects[File.join(s3_key, file_name)]
+        obj = aws_s3_bucket.objects[s3_key]
         obj.write(file: path_name)
       end
     end
